@@ -338,7 +338,7 @@ if (content.locals) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/anantagarwal/Documents/workspace-spring-tool-suite-4-4.5.1.RELEASE/dimo-app/dimo-ui/src/styles.css */"./src/styles.css");
+module.exports = __webpack_require__(/*! /Users/paridhimalviya/Documents/dimo-application/dimo-ui/src/styles.css */"./src/styles.css");
 
 
 /***/ })
