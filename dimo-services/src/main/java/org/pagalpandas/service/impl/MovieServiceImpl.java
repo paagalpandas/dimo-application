@@ -6,7 +6,9 @@ import org.pagalpandas.repo.MovieRepository;
 import org.pagalpandas.service.MovieService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class MovieServiceImpl implements MovieService {
 	
 	@Autowired

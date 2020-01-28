@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-@ControllerAdvice
+//@ControllerAdvice
 public class DimoControllerAdvice {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DimoControllerAdvice.class);
