@@ -12,5 +12,4 @@ class DimoServicesApplicationTests {
 	void contextLoads() {
 		assertEquals("Test","Test");
 	}
-
 }
