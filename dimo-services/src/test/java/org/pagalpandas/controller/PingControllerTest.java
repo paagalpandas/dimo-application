@@ -24,7 +24,7 @@ public class PingControllerTest {
     public void testPingController() throws Exception {
 
         this.mockMvc.perform(get("/api/ping")).andDo(print()).andExpect(status().isOk())
-                .andExpect(content().string(Matchers.equalTo("hello, pandas")));
+                .andExpect(content().string(Matchers.equalTo("hello, pandas!")));
 
     }
 }
