@@ -33,7 +33,7 @@ public class SearchServiceTest {
     public void testSearchSingleWordInTitleSuccess() throws Exception {
 
         List<Movie> expectedSearchResult = getExpectedSearchResult();
-        when(movieRepository.findByTitleIgnoreCaseContainingOrKeywordsIgnoreCaseContaining("1917")).thenReturn(expectedSearchResult);
+        when(movieRepository.findByTitleIgnoreCaseContainingOrKeywordsIgnoreCaseContaining("1917", "1917")).thenReturn(expectedSearchResult);
 
         List<Movie> searchResult = searchService.searchByKeyWord("1917");
         assertEquals(expectedSearchResult, searchResult);
@@ -44,7 +44,7 @@ public class SearchServiceTest {
     public void testSearchSingleWordInTitleNotFound() throws Exception {
 
         List<Movie> expectedSearchResult = getExpectedSearchResult();
-        when(movieRepository.findByTitleIgnoreCaseContainingOrKeywordsIgnoreCaseContaining("1917")).thenReturn(expectedSearchResult);
+        when(movieRepository.findByTitleIgnoreCaseContainingOrKeywordsIgnoreCaseContaining("1917", "1917")).thenReturn(expectedSearchResult);
 
         List<Movie> searchResult = searchService.searchByKeyWord("Mission Impossible");
         assertEquals(0, searchResult.size() );

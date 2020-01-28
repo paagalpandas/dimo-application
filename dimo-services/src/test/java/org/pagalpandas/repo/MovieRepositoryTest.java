@@ -20,7 +20,7 @@ public class MovieRepositoryTest {
             movieRepository.save(movie);
         }
 
-        List<Movie> resultList = movieRepository.findByTitleIgnoreCaseContainingOrKeywordsIgnoreCaseContaining("1917");
+        List<Movie> resultList = movieRepository.findByTitleIgnoreCaseContainingOrKeywordsIgnoreCaseContaining("1917", "1917");
         assertEquals(testList, resultList);
     }
 
@@ -34,7 +34,7 @@ public class MovieRepositoryTest {
             movieRepository.save(movie);
         }
 
-        List<Movie> resultList = movieRepository.findByTitleIgnoreCaseContainingOrKeywordsIgnoreCaseContaining("1915");
+        List<Movie> resultList = movieRepository.findByTitleIgnoreCaseContainingOrKeywordsIgnoreCaseContaining("1915", "1917");
         assertEquals(0, resultList.size());
     }
 
@@ -48,7 +48,7 @@ public class MovieRepositoryTest {
             movieRepository.save(movie);
         }
 
-        List<Movie> resultList = movieRepository.findByTitleIgnoreCaseContainingOrKeywordsIgnoreCaseContaining("1915");
+        List<Movie> resultList = movieRepository.findByTitleIgnoreCaseContainingOrKeywordsIgnoreCaseContaining("1915", "1917");
         assertEquals(1, resultList.size());
         assertEquals("1915 a love story", ((Movie)resultList.get(0)).getTitle());
     }
@@ -85,7 +85,7 @@ public class MovieRepositoryTest {
             movieRepository.save(movie);
         }
 
-        List<Movie> resultList = movieRepository.findByTitleIgnoreCaseContainingOrKeywordsIgnoreCaseContaining("in     1917");
+        List<Movie> resultList = movieRepository.findByTitleIgnoreCaseContainingOrKeywordsIgnoreCaseContaining("in     1917", "1917");
         assertEquals(2, resultList.size());
     }
 
@@ -99,7 +99,7 @@ public class MovieRepositoryTest {
             movieRepository.save(movie);
         }
 
-        List<Movie> resultList = movieRepository.findByTitleIgnoreCaseContainingOrKeywordsIgnoreCaseContaining("     1917");
+        List<Movie> resultList = movieRepository.findByTitleIgnoreCaseContainingOrKeywordsIgnoreCaseContaining("     1917", "1917");
         assertEquals(testList, resultList);
     }
 
@@ -113,7 +113,7 @@ public class MovieRepositoryTest {
             movieRepository.save(movie);
         }
 
-        List<Movie> resultList = movieRepository.findByTitleIgnoreCaseContainingOrKeywordsIgnoreCaseContaining("1917     ");
+        List<Movie> resultList = movieRepository.findByTitleIgnoreCaseContainingOrKeywordsIgnoreCaseContaining("1917     ", "1917");
         assertEquals(testList, resultList);
     }
 

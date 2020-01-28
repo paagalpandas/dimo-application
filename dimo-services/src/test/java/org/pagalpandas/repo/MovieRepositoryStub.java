@@ -15,7 +15,7 @@ public class MovieRepositoryStub implements MovieRepository{
 
     List<Movie> movieList = new ArrayList<Movie>();
 
-    public List<Movie> findByTitleIgnoreCaseContainingOrKeywordsIgnoreCaseContaining(String searchString){
+    public List<Movie> findByTitleIgnoreCaseContainingOrKeywordsIgnoreCaseContaining(String searchString, String keySearchString){
 
         List<Movie> resultList = new ArrayList<Movie>();
        String normalisedSearchString = StringUtils.normalizeSpace(searchString);

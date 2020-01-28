@@ -1,9 +1,17 @@
 package org.pagalpandas.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Movie {
 
+    public Movie(){}
+
+    @Id
     private int id;
     private String title;
+    private String keywords;
     private String tagLine;
 
     public Movie(int id, String title, String tagLine){
