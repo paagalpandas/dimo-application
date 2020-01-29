@@ -11,16 +11,21 @@ import {MatIconModule} from '@angular/material/icon';
 
 import {DashboardComponent} from './containers/components/dashboard.component';
 import {LoginComponent} from "./containers/components/login.component";
+import {EntryPointComponent} from "./containers/components/entrypoint.component";
+import {SignUpComponent} from "./containers/components/signup.component";
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AppRoutingModule} from './app-routing.module';
 import {HttpClientModule} from '@angular/common/http';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    LoginComponent
+    LoginComponent,
+    EntryPointComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
