@@ -1,38 +1,21 @@
-<mat-tab-group dynamicHeight>
-  <mat-tab label="Register">
-    <div class="example-small-box mat-elevation-z4">
-      <mat-card class="box">
-        <mat-card-header>
-          <mat-card-title>Coming Soon</mat-card-title>
-        </mat-card-header>
-      </mat-card>
-    </div>
-  </mat-tab>
-  <mat-tab label="Log in">
-    <div class="example-large-box mat-elevation-z4">
+<mat-card class="box">
+  <form class="example-form" #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <mat-card-content>
+      <p>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Email" name="email" ngModel>
+      </mat-form-field>
+      </p>
+      <p>
+      <mat-form-field class="example-full-width">
+        <input type="password" matInput placeholder="Password" name="password" ngModel>
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+      </p>
 
-        <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
-
-          <mat-card class="box">
-            <mat-card-header>
-              <mat-card-title>Log in</mat-card-title>
-            </mat-card-header>
-
-            <form class="example-form" #f="ngForm" (ngSubmit)="onSubmit(f)">
-              <mat-card-content>
-                <mat-form-field class="example-full-width">
-                  <input matInput placeholder="Email" name="email" ngModel>
-                </mat-form-field>
-
-                <mat-form-field class="example-full-width">
-                  <input type="password" matInput placeholder="Password" name="password" ngModel>
-                </mat-form-field>
-              </mat-card-content>
-              <button mat-stroked-button color="accent" class="btn-block">Log in</button>
-            </form>
-          </mat-card>
-
-      </div>
-    </div>
-  </mat-tab>
-</mat-tab-group>
+    </mat-card-content>
+    <button mat-stroked-button color="accent" class="btn-block">Log in</button>
+  </form>
+</mat-card>

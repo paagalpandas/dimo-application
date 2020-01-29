@@ -10,19 +10,22 @@ import {Router} from "@angular/router";
   templateUrl: '../views/login.component.html',
   styleUrls: ['../styles/scss/dashboard.component.scss']
 })
+
 export class LoginComponent {
+
+  hide= true;
 
   constructor(private http: HttpClient, private profileService: ProfileService, private router: Router) {
   }
 
 
-  onSubmit(f: NgForm) {
-    console.log(f.value.password);
-    console.log(f.value.email)
+  onSubmit(form: NgForm) {
+    console.log(form.value.password);
+    console.log(form.value.email)
 
     var credentials = {
-      email: f.value.email,
-      password: f.value.password
+      email: form.value.email,
+      password: form.value.password
     };
 
     this.http.post("http://localhost:5000/api/users/login", credentials)

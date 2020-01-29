@@ -9,8 +9,8 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.pagalpandas.dto.CredentialsDTO;
 import org.pagalpandas.dto.LoginResponseDTO;
-import org.pagalpandas.entity.Profile;
 import org.pagalpandas.entity.Role;
+import org.pagalpandas.entity.User;
 import org.pagalpandas.exceptions.UnauthorizedException;
 import org.pagalpandas.repo.UserRepository;
 
@@ -25,7 +25,7 @@ import static org.pagalpandas.utils.Constants.SECRET;
 class UserServiceImplTest {
 
     @Mock
-    UserRepository repository;
+    UserRepository userRepository;
 
     @InjectMocks
     UserServiceImpl service;
@@ -37,34 +37,38 @@ class UserServiceImplTest {
 
     @Test
     public void loginSuccessful() throws UnauthorizedException {
-        when(repository.matchCredentials(any(), any())).thenReturn(true);
 
-        Profile profile = new Profile();
-        profile.setId("007");
-        profile.setFirstName("Foo");
-        profile.setLastName("Bar");
-        profile.setEmail("foo@bar.com");
-        profile.setRoles(Arrays.asList(Role.ROLE_ADMIN, Role.ROLE_VIEWER));
+        User dbUser = new User();
+        dbUser.setEmail("foo@bar.com");
+        dbUser.setPassword("hashedpassword");
 
-        when(repository.getProfile("foo@bar.com")).thenReturn(profile);
-        CredentialsDTO dto = new CredentialsDTO("foo@bar.com", "passwordHash");
+        dbUser.setFirstName("Foo");
+        dbUser.setLastName("Bar");
+        dbUser.setRoles(Arrays.asList(Role.ROLE_ADMIN,Role.ROLE_VIEWER));
+
+        when(userRepository.getUserByEmailAndPassword(any(), any())).thenReturn(dbUser);
+
+        CredentialsDTO dto = new CredentialsDTO("foo@bar.com", "hashedpassword");
         LoginResponseDTO responseDTO = service.login(dto);
+
         assertNotNull(responseDTO);
 
         String token = responseDTO.getToken();
 
         Claims claims = parseToken(token);
+
         assertEquals("foo@bar.com", claims.getSubject());
         assertEquals("Foo", claims.get("FirstName"));
         assertEquals("Bar", claims.get("LastName"));
-        assertEquals(Role.ROLE_ADMIN.getAuthority() + "," + Role.ROLE_VIEWER.getAuthority(), claims.get(AUTHORITIES));
     }
 
     @Test
-    public void loginFailed() {
-        when(repository.matchCredentials(any(), any())).thenReturn(false);
+    public void loginFailed() throws UnauthorizedException {
+        when(userRepository.getUserByEmailAndPassword(any(), any())).thenReturn(null);
         CredentialsDTO dto = new CredentialsDTO("foo@bar.com", "passwordHash");
-        assertThrows(UnauthorizedException.class, () -> service.login(dto));
+        assertThrows(UnauthorizedException.class, () -> {
+            service.login(dto);
+        });
     }
 
     private Claims parseToken(String token) {
