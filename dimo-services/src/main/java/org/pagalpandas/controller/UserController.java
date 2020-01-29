@@ -20,8 +20,8 @@ public class UserController {
     UserService service;
 
     @PostMapping("login")
-    public LoginResponseDTO login(@RequestBody CredentialsDTO creds) throws UnauthorizedException {
-        return this.service.login(creds);
+    public LoginResponseDTO login(@RequestBody CredentialsDTO credentialsDTO) throws UnauthorizedException {
+        return this.service.login(credentialsDTO);
     }
 
     @PostMapping("register")

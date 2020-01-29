@@ -26,7 +26,6 @@ public class DashboardController {
     }
 
     private List<CategoryDTO> dummyData() {
-
         List<CategoryDTO> categoryDTOS = new ArrayList<>();
         String[] cats = {"Trending", "French", "Walt Disney"};
         List<MovieDTO> movieDTOS = new ArrayList<>();
@@ -42,15 +41,12 @@ public class DashboardController {
         movieDTOS.add(movieDTO);
         movieDTOS.add(movieDTO);
 
-
         for (String c : cats) {
             CategoryDTO categoryDTO = new CategoryDTO();
             categoryDTO.category = c;
             categoryDTO.movies = movieDTOS;
             categoryDTOS.add(categoryDTO);
         }
-
         return categoryDTOS;
     }
-
 }

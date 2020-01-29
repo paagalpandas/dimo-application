@@ -27,23 +27,25 @@ import static org.pagalpandas.utils.Constants.*;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    UserRepository repository;
+    UserRepository userRepository;
 
     public LoginResponseDTO login(CredentialsDTO creds) throws UnauthorizedException {
-        // TODO: Perform basic validations
 
-        // Check matching credentials.
-        boolean isMatch = this.repository.matchCredentials(creds.email, creds.passwordHash);
-        if (!isMatch) {
-            throw new UnauthorizedException();
-        }
+        if(creds == null || creds.email == null || creds.passwordHash == null) throw new IllegalArgumentException();
 
-        User user = this.repository.getProfile(creds.email);
-        String token = generateToken(user);
+        User dbUser = userRepository.getUserByEmailAndPassword(creds.email,creds.passwordHash);
+
+        if(dbUser == null) throw new UnauthorizedException();
+
+        String token = generateToken(dbUser);
+
         LoginResponseDTO response = new LoginResponseDTO();
+
         response.setToken(token);
+
         return response;
     }
+
 
     @Override
     public long register(UserDTO userDTO) throws UserAlreadyExistsException {
@@ -53,11 +55,11 @@ public class UserServiceImpl implements UserService {
         }
         userEntity.setPassword(generateHashPassword(userDTO.getPassword()));
         userEntity.setEmail(userDTO.getEmail());
-        return this.repository.save(userEntity).getId();
+        return this.userRepository.save(userEntity).getId();
     }
 
     public boolean checkExistingUser(String emailId){
-       User user= repository.findByEmail(emailId);
+       User user= userRepository.findByEmail(emailId);
        return user!=null;
     }
 
@@ -77,6 +79,7 @@ public class UserServiceImpl implements UserService {
         }
    return null;
     }
+
 
 
     private String generateToken(User user) {
