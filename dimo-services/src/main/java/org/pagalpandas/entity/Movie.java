@@ -1,27 +1,31 @@
 package org.pagalpandas.entity;
 
-import javax.persistence.Entity;
+import org.bson.types.ObjectId;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.persistence.Id;
 
-@Entity
+@Document(collection = "image_test")
 public class Movie {
 
     public Movie(){}
 
     @Id
-    private int id;
+    private ObjectId id;
+    private int movieId;
     private String title;
-    private String keywords;
-    private String tagLine;
+    //private String keywords;
+    private String tagline;
+    private String Poster;
 
-    public Movie(int id, String title, String tagLine){
-        this.id = id;
+    public Movie(int movieId, String title, String tagline){
+        this.movieId = movieId;
         this.title = title;
-        this.tagLine = tagLine;
+        this.tagline = tagline;
     }
 
-    public int getId() {
-        return id;
+    public int getMovieId() {
+        return movieId;
     }
 
 
@@ -29,9 +33,20 @@ public class Movie {
         return title;
     }
 
+    public String getPoster() {
+        return Poster;
+    }
 
-    public String getTagLine() {
-        return tagLine;
+    public void setPoster(String poster) {
+        this.Poster = poster;
+    }
+
+    public String getTagline() {
+        return tagline;
+    }
+
+    public ObjectId getId() {
+        return id;
     }
 
     @Override

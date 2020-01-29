@@ -2,119 +2,35 @@ package org.pagalpandas.repo;
 
 import org.junit.jupiter.api.Test;
 import org.pagalpandas.entity.Movie;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@SpringBootTest
 public class MovieRepositoryTest {
-
+    @Autowired
+    MovieRepository movieRepository;
     @Test
     public void testSearchContainsInTitle(){
 
-        MovieRepository movieRepository = new MovieRepositoryStub();
-        List<Movie> testList = getTestMovieListForContainsInTitle();
-
-        for (Movie movie:testList) {
-            movieRepository.save(movie);
-        }
-
-        List<Movie> resultList = movieRepository.findByTitleIgnoreCaseContainingOrKeywordsIgnoreCaseContaining("1917", "1917");
-        assertEquals(testList, resultList);
+        List<Movie> resultList = movieRepository.findByTitleIgnoreCaseContaining("The Good Dinosaur");
+        assertEquals("The Good Dinosaur", ((Movie)resultList.get(0)).getTitle());
     }
 
     @Test
     public void testSearchDoesNotContainInTitle(){
-
-        MovieRepository movieRepository = new MovieRepositoryStub();
-        List<Movie> testList = getTestMovieListForContainsInTitle();
-
-        for (Movie movie:testList) {
-            movieRepository.save(movie);
-        }
-
-        List<Movie> resultList = movieRepository.findByTitleIgnoreCaseContainingOrKeywordsIgnoreCaseContaining("1915", "1917");
+        List<Movie> resultList = movieRepository.findByTitleIgnoreCaseContaining("1915");
         assertEquals(0, resultList.size());
     }
 
     @Test
-    public void testSearchDoesNotContainInTitleForSome(){
+    public void testSearchContainInTitleForSome(){
 
-        MovieRepository movieRepository = new MovieRepositoryStub();
-        List<Movie> testList = getTestMovieListForContainsInTitleForSome();
-
-        for (Movie movie:testList) {
-            movieRepository.save(movie);
-        }
-
-        List<Movie> resultList = movieRepository.findByTitleIgnoreCaseContainingOrKeywordsIgnoreCaseContaining("1915", "1917");
-        assertEquals(1, resultList.size());
-        assertEquals("1915 a love story", ((Movie)resultList.get(0)).getTitle());
+        List<Movie> resultList = movieRepository.findByTitleIgnoreCaseContaining("The");
+        assertEquals(38, resultList.size());
     }
-
-    public List<Movie> getTestMovieListForContainsInTitle(){
-
-        List<Movie> searchResult = new ArrayList<Movie>();
-        searchResult.add(new Movie(1, "Once upon a time in 1917", "A peaceful story about war"));
-        searchResult.add(new Movie(1, "1917", "A modern story about war"));
-        searchResult.add(new Movie(1, "Robot1917", "A modern story about robots"));
-        searchResult.add(new Movie(1, "1917 a love story", "A modern story about love and war"));
-        searchResult.add(new Movie(1, "What happened in 1917 stays at 1917", "A mystery story about love and war"));
-        return searchResult;
-    }
-
-    public List<Movie> getTestMovieListForContainsInTitleForSome(){
-
-        List<Movie> searchResult = new ArrayList<Movie>();
-        searchResult.add(new Movie(1, "Once upon a time in 1917", "A peaceful story about war"));
-        searchResult.add(new Movie(1, "2917", "A futuristic  story about war"));
-        searchResult.add(new Movie(1, "Robot1917", "A modern story about robots"));
-        searchResult.add(new Movie(1, "1915 a love story", "A modern story about love and war"));
-        searchResult.add(new Movie(1, "What happened in 1917 stays at 1917", "A mystery story about love and war"));
-        return searchResult;
-    }
-
-    @Test
-    public void testSearchStringWithSpaceSeperationContainsInTitle(){
-
-        MovieRepository movieRepository = new MovieRepositoryStub();
-        List<Movie> testList = getTestMovieListForContainsInTitle();
-
-        for (Movie movie:testList) {
-            movieRepository.save(movie);
-        }
-
-        List<Movie> resultList = movieRepository.findByTitleIgnoreCaseContainingOrKeywordsIgnoreCaseContaining("in     1917", "1917");
-        assertEquals(2, resultList.size());
-    }
-
-    @Test
-    public void testSearchStringWithLeadingSpacesContainsInTitle(){
-
-        MovieRepository movieRepository = new MovieRepositoryStub();
-        List<Movie> testList = getTestMovieListForContainsInTitle();
-
-        for (Movie movie:testList) {
-            movieRepository.save(movie);
-        }
-
-        List<Movie> resultList = movieRepository.findByTitleIgnoreCaseContainingOrKeywordsIgnoreCaseContaining("     1917", "1917");
-        assertEquals(testList, resultList);
-    }
-
-    @Test
-    public void testSearchStringWithTrailingSpacesContainsInTitle(){
-
-        MovieRepository movieRepository = new MovieRepositoryStub();
-        List<Movie> testList = getTestMovieListForContainsInTitle();
-
-        for (Movie movie:testList) {
-            movieRepository.save(movie);
-        }
-
-        List<Movie> resultList = movieRepository.findByTitleIgnoreCaseContainingOrKeywordsIgnoreCaseContaining("1917     ", "1917");
-        assertEquals(testList, resultList);
-    }
-
 }

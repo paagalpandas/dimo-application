@@ -15,9 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
+import static org.mockito.Mockito.*;
 
 
 public class SearchControllerTest {
@@ -53,6 +51,20 @@ public class SearchControllerTest {
 
         List<Movie> searchResult = searchController.Search("Mission Impossible");
         assertEquals(0, searchResult.size() );
+    }
+
+    @Test
+    public void testEmptySearchString() throws Exception {
+
+        List<Movie> searchResult = searchController.Search("");
+        verify(searchService, never()).searchByKeyWord(anyString());
+    }
+
+    @Test
+    public void testNullSearchString() throws Exception {
+
+        List<Movie> searchResult = searchController.Search(null);
+        verify(searchService, never()).searchByKeyWord(anyString());
     }
 
     public List<Movie> getExpectedSearchResult(){
