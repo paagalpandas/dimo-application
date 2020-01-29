@@ -9,8 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class DimoServicesApplicationTests {
 
 	@Test
-	void contextLoads() {
+	public void contextLoads() {
 		assertEquals("Test","Test");
 	}
-
 }
