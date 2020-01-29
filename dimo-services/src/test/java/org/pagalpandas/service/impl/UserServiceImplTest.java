@@ -16,8 +16,7 @@ import org.pagalpandas.repo.UserRepository;
 
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.pagalpandas.utils.Constants.AUTHORITIES;
@@ -37,7 +36,7 @@ class UserServiceImplTest {
     }
 
     @Test
-    public void login() throws UnauthorizedException {
+    public void loginSuccessful() throws UnauthorizedException {
         when(repository.matchCredentials(any(), any())).thenReturn(true);
 
         Profile profile = new Profile();
@@ -59,6 +58,15 @@ class UserServiceImplTest {
         assertEquals("Foo", claims.get("FirstName"));
         assertEquals("Bar", claims.get("LastName"));
         assertEquals(Role.ROLE_ADMIN.getAuthority() + "," + Role.ROLE_VIEWER.getAuthority(), claims.get(AUTHORITIES));
+    }
+
+    @Test
+    public void loginFailed() throws UnauthorizedException {
+        when(repository.matchCredentials(any(), any())).thenReturn(false);
+        CredentialsDTO dto = new CredentialsDTO("foo@bar.com", "passwordHash");
+        assertThrows(UnauthorizedException.class, () -> {
+            service.login(dto);
+        });
     }
 
     private Claims parseToken(String token) {
