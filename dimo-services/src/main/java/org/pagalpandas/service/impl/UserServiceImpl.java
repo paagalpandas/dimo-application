@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
         // TODO: Perform basic validations
 
         // Check matching credentials.
-        boolean isMatch = this.repository.matchCredentials(creds.email, creds.password);
+        boolean isMatch = this.repository.matchCredentials(creds.email, creds.passwordHash);
         if (!isMatch) {
             throw new UnauthorizedException();
         }
