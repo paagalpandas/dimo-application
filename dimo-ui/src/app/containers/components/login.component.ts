@@ -8,7 +8,7 @@ import {Router} from "@angular/router";
 @Component({
   selector: "dimo-login",
   templateUrl: '../views/login.component.html',
-  styleUrls: ['../styles/scss/dashboard.component.scss']
+  styleUrls: ['../styles/scss/login.component.scss']
 })
 export class LoginComponent {
 
@@ -32,5 +32,6 @@ export class LoginComponent {
         this.router.navigate(["dashboard"]);
       });
   }
+
 }
 
