@@ -1,5 +1,11 @@
 import {Component} from "@angular/core";
-import { FormControl, Validators, AbstractControl } from '@angular/forms';
+import {FormControl, Validators, AbstractControl, NgForm, FormGroup} from '@angular/forms';
+import {HttpClient} from "@angular/common/http";
+import {ProfileService} from "../../services/ProfileService";
+import {Router} from "@angular/router";
+import {ICategory} from "../helpers/dashboard.interfaces";
+import {IUser} from "../helpers/entrypoint.interfaces";
+import {LoginResponseDTO} from "../dto/LoginResponseDTO";
 
 
 @Component({
@@ -8,29 +14,42 @@ import { FormControl, Validators, AbstractControl } from '@angular/forms';
   styleUrls: ['../styles/scss/signup.component.scss']
 })
 export class SignUpComponent{
+
+  public User: IUser;
+
+  constructor(private http: HttpClient, private profileService: ProfileService, private router: Router) {
+  }
+
+
   emailFormControl=new FormControl('',Validators.email);
+
+
   passwordFormControl=new FormControl('',
     [Validators.required,Validators.minLength(8)]
     );
 
-    
   hide =true;
 
+  checkPasswords(signupgroup: FormGroup) {
+    let pass = signupgroup.get('password').value;
+    let confirmPass = signupgroup.get('confirmPass').value;
 
-  // static passwordMatchValidator(control: AbstractControl) {
-  //   const password: string = control.get('password').value; // get password from our password form control
-  //   const confirmPassword: string = control.get('confirmPassword').value; // get password from our confirmPassword form control
-  //   // compare is the password math
-  //   if (password !== confirmPassword) {
-  //     // if they don't match, set an error in our confirmPassword form control
-  //     control.get('confirmPassword').setErrors({ NoPassswordMatch: true });
-  //   }
-  // }
-
-  // password(formControl:FormControl){
-
-  // }
+    return pass === confirmPass ? null : { notSame: true }
+  }
 
 
-     
+  onSignup(form:NgForm){
+    console.log(form.value);
+
+
+    let User;
+    this.http.post("http://localhost:5000/api/users/register",(User)).subscribe(data=>{
+      let response = data as LoginResponseDTO;
+      this.profileService.setToken(response.token);
+
+      // this.router.navigate(["dashboard"]);
+    });
+  }
+
+
 }
