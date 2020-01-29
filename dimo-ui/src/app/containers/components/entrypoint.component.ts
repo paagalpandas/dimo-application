@@ -2,8 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {ICategory} from '../helpers/dashboard.interfaces';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {ProfileService} from "../../services/ProfileService";
-import {Router} from "@angular/router";
-
 
 @Component({
   selector: "dimo-entrypoint",

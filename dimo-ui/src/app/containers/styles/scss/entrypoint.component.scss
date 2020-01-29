@@ -6,8 +6,16 @@
 }
 
 .entrypoint-container{
+
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  .container-item{
     width:500px;
   box-shadow: 0px 10px 20px 0px rgba(50, 50, 50, 0.52);
   border-color: #ddd;
   border: 1px solid transparent;
+  background: aliceblue;
+  }
 }
