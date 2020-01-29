@@ -1,5 +1,6 @@
 package org.pagalpandas.controller;
 
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -23,7 +24,7 @@ public class PingControllerTest {
     public void testPingController() throws Exception {
 
         this.mockMvc.perform(get("/api/ping")).andDo(print()).andExpect(status().isOk())
-                .andExpect(content().string(containsString("hello, pandas!")));
+                .andExpect(content().string(Matchers.equalTo("hello, pandas!")));
 
     }
 }
