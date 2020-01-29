@@ -1,12 +1,15 @@
 package org.pagalpandas.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.List;
 
-
+@Document
 public class User {
 
+    @Id
     private long id;
     private String email;
     private String firstName;
