@@ -2,7 +2,9 @@ package org.pagalpandas.controller;
 
 import org.pagalpandas.dto.CredentialsDTO;
 import org.pagalpandas.dto.LoginResponseDTO;
+import org.pagalpandas.dto.UserDTO;
 import org.pagalpandas.exceptions.UnauthorizedException;
+import org.pagalpandas.exceptions.UserAlreadyExistsException;
 import org.pagalpandas.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,4 +23,11 @@ public class UserController {
     public LoginResponseDTO login(@RequestBody CredentialsDTO credentialsDTO) throws UnauthorizedException {
         return this.service.login(credentialsDTO);
     }
+
+    @PostMapping("register")
+    public long register(@RequestBody UserDTO userDTO) throws UserAlreadyExistsException {
+        return this.service.register(userDTO);
+
+    }
+
 }

@@ -6,17 +6,21 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.pagalpandas.dto.CredentialsDTO;
 import org.pagalpandas.dto.LoginResponseDTO;
+import org.pagalpandas.dto.UserDTO;
 import org.pagalpandas.entity.Role;
 import org.pagalpandas.entity.User;
 import org.pagalpandas.exceptions.UnauthorizedException;
+import org.pagalpandas.exceptions.UserAlreadyExistsException;
 import org.pagalpandas.repo.UserRepository;
 
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.pagalpandas.utils.Constants.AUTHORITIES;
@@ -37,6 +41,7 @@ class UserServiceImplTest {
 
     @Test
     public void loginSuccessful() throws UnauthorizedException {
+
 
         User dbUser = new User();
         dbUser.setEmail("foo@bar.com");
@@ -75,5 +80,48 @@ class UserServiceImplTest {
         return Jwts.parser()
                 .setSigningKey(SECRET.getBytes())
                 .parseClaimsJws(token).getBody();
+    }
+
+    /*@Test
+    public void registerSuccess(){
+        when(repository.)
+    }*/
+
+    /*@Test
+    public void hashPassword(){
+        assertEquals("3PFIMprNmwlw7uSNAUW1fpdWOmZ0yFAs3P+uf09Oj4k=",service.generateHashPassword("abc"));
+        assertEquals("3PFIMprNmwlw7uSNAUW1fpdWOmZ0yFAs3P+uf09Oj4k=",service.generateHashPassword("abc"));
+    }*/
+
+    @Test
+    public void testNewUser() throws UserAlreadyExistsException {
+        String emailId="nitikathareja@gmail.com";
+        when(userRepository.findByEmail(emailId)).thenReturn(null);
+        when(userRepository.save(Mockito.any(User.class))).thenReturn(getDummyUser());
+        assertEquals(1l,service.register(getUserDTO()));
+       // assertFalse(service.checkExistingUser(emailId));
+
+    }
+
+    //@Test(expected= UserAlreadyExistsException.class)
+    @Test
+    public void testAlreadyExistingUser(){
+
+        String emailId="nitikathareja@gmail.com";
+        when(userRepository.findByEmail(emailId)).thenReturn(getDummyUser());
+        when(userRepository.save(Mockito.any(User.class))).thenReturn(getDummyUser());
+    }
+
+    private User getDummyUser(){
+        User user = new User();
+        user.setId(1l);
+        user.setEmail("nitikathareja@gmail.com");
+        return user;
+    }
+
+    private UserDTO getUserDTO(){
+        UserDTO userDTO = new UserDTO();
+        userDTO.setEmail("nitikathareja@gmail.com");
+        return userDTO;
     }
 }

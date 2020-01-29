@@ -1,16 +1,22 @@
 package org.pagalpandas.service.impl;
 
 import com.auth0.jwt.JWT;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.pagalpandas.dto.CredentialsDTO;
 import org.pagalpandas.dto.LoginResponseDTO;
+import org.pagalpandas.dto.UserDTO;
 import org.pagalpandas.entity.User;
 import org.pagalpandas.exceptions.UnauthorizedException;
+import org.pagalpandas.exceptions.UserAlreadyExistsException;
 import org.pagalpandas.repo.UserRepository;
 import org.pagalpandas.service.UserService;
+import org.pagalpandas.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
 import java.util.Date;
 import java.util.stream.Collectors;
 
@@ -39,6 +45,42 @@ public class UserServiceImpl implements UserService {
 
         return response;
     }
+
+
+    @Override
+    public long register(UserDTO userDTO) throws UserAlreadyExistsException {
+        User userEntity= new User();
+        if(checkExistingUser(userDTO.getEmail())){
+            throw new UserAlreadyExistsException("User Already Exists");
+        }
+        userEntity.setPassword(generateHashPassword(userDTO.getPassword()));
+        userEntity.setEmail(userDTO.getEmail());
+        return this.userRepository.save(userEntity).getId();
+    }
+
+    private boolean checkExistingUser(String emailId){
+       User user= userRepository.findByEmail(emailId);
+       return user!=null;
+    }
+
+
+    private String generateHashPassword(String password){
+
+       try{
+            Mac sha256_HMAC = Mac.getInstance("HmacSHA256");
+            SecretKeySpec secret_key = new SecretKeySpec(SECRET_KEY.getBytes(), "HmacSHA256");
+            sha256_HMAC.init(secret_key);
+
+            String hash = Base64.encodeBase64String(sha256_HMAC.doFinal(password.getBytes()));
+            return hash;
+        }
+        catch (Exception e){
+            System.out.println("Error");
+        }
+   return null;
+    }
+
+
 
     private String generateToken(User user) {
         final String authorities = user.roles.stream()
