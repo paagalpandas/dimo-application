@@ -11,30 +11,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class MovieRepositoryStub implements MovieRepository{
+public class MovieRepositoryStub implements MovieRepository {
 
-    List<Movie> movieList = new ArrayList<Movie>();
+    List<Movie> movieList = new ArrayList<>();
 
-    public List<Movie> findByTitleIgnoreCaseContainingOrKeywordsIgnoreCaseContaining(String searchString, String keySearchString){
-
-        List<Movie> resultList = new ArrayList<Movie>();
-       String normalisedSearchString = StringUtils.normalizeSpace(searchString);
-       System.out.println("["+ searchString + "] normalised to [" + normalisedSearchString + "]");
-        for (Movie movie:movieList) {
-            boolean matchFound = movie.getTitle().toLowerCase().contains(normalisedSearchString.toLowerCase().subSequence(0,normalisedSearchString.length()));
-            if(matchFound  ){
+    public List<Movie> findByTitleIgnoreCaseContainingOrKeywordsIgnoreCaseContaining(String searchString, String keySearchString) {
+        List<Movie> resultList = new ArrayList<>();
+        String normalisedSearchString = StringUtils.normalizeSpace(searchString);
+        for (Movie movie : movieList) {
+            boolean matchFound = movie.getTitle().toLowerCase().contains(normalisedSearchString.toLowerCase().subSequence(0, normalisedSearchString.length()));
+            if (matchFound) {
                 resultList.add(movie);
             }
         }
         return resultList;
-
-    }
-
-    List<Movie> findAll(String searchString){
-
-        List<Movie> resultList = null;
-        return resultList;
-
     }
 
     @Override
@@ -105,7 +95,6 @@ public class MovieRepositoryStub implements MovieRepository{
 
     @Override
     public void flush() {
-
     }
 
     @Override
@@ -115,12 +104,10 @@ public class MovieRepositoryStub implements MovieRepository{
 
     @Override
     public void deleteInBatch(Iterable<Movie> iterable) {
-
     }
 
     @Override
     public void deleteAllInBatch() {
-
     }
 
     @Override

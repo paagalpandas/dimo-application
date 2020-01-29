@@ -6,7 +6,6 @@ import org.pagalpandas.service.SearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -15,7 +14,7 @@ public class SearchServiceImpl implements SearchService {
     @Autowired
     MovieRepository movieRepository;
 
-    public List<Movie> searchByKeyWord(String searchString) throws Exception {
+    public List<Movie> searchByKeyWord(String searchString) {
         return movieRepository.findByTitleIgnoreCaseContainingOrKeywordsIgnoreCaseContaining(searchString, searchString);
 
    }

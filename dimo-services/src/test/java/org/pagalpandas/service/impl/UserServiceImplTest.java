@@ -61,12 +61,10 @@ class UserServiceImplTest {
     }
 
     @Test
-    public void loginFailed() throws UnauthorizedException {
+    public void loginFailed() {
         when(repository.matchCredentials(any(), any())).thenReturn(false);
         CredentialsDTO dto = new CredentialsDTO("foo@bar.com", "passwordHash");
-        assertThrows(UnauthorizedException.class, () -> {
-            service.login(dto);
-        });
+        assertThrows(UnauthorizedException.class, () -> service.login(dto));
     }
 
     private Claims parseToken(String token) {
