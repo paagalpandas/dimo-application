@@ -58,15 +58,15 @@ public class UserServiceImpl implements UserService {
         return this.userRepository.save(userEntity).getId();
     }
 
-    public boolean checkExistingUser(String emailId){
+    private boolean checkExistingUser(String emailId){
        User user= userRepository.findByEmail(emailId);
        return user!=null;
     }
 
 
-    public String generateHashPassword(String password){
-        try {
+    private String generateHashPassword(String password){
 
+       try{
             Mac sha256_HMAC = Mac.getInstance("HmacSHA256");
             SecretKeySpec secret_key = new SecretKeySpec(SECRET_KEY.getBytes(), "HmacSHA256");
             sha256_HMAC.init(secret_key);
