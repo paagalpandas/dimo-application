@@ -1,9 +1,15 @@
 package org.pagalpandas.entity;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.List;
 
+@Document
 public class Profile {
-    public String id;
+
+    @Id
+    public int id;
     public String email;
     public String firstName;
     public String lastName;
@@ -17,11 +23,11 @@ public class Profile {
         this.roles = roles;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

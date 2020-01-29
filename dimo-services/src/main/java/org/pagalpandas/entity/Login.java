@@ -1,6 +1,12 @@
 package org.pagalpandas.entity;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
 public class Login {
+
+    @Id
     public String email;
     public String password;
 

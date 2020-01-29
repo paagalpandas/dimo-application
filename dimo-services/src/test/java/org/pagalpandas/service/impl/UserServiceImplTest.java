@@ -12,7 +12,7 @@ import org.pagalpandas.dto.LoginResponseDTO;
 import org.pagalpandas.entity.Profile;
 import org.pagalpandas.entity.Role;
 import org.pagalpandas.exceptions.UnauthorizedException;
-import org.pagalpandas.repo.UserRepository;
+import org.pagalpandas.repo.ProfileRepository;
 
 import java.util.Arrays;
 
@@ -25,7 +25,7 @@ import static org.pagalpandas.utils.Constants.SECRET;
 class UserServiceImplTest {
 
     @Mock
-    UserRepository repository;
+    ProfileRepository repository;
 
     @InjectMocks
     UserServiceImpl service;

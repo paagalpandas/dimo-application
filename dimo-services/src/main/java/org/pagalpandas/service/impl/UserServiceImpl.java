@@ -3,15 +3,18 @@ package org.pagalpandas.service.impl;
 import com.auth0.jwt.JWT;
 import org.pagalpandas.dto.CredentialsDTO;
 import org.pagalpandas.dto.LoginResponseDTO;
+import org.pagalpandas.entity.Login;
 import org.pagalpandas.entity.Profile;
 import org.pagalpandas.exceptions.UnauthorizedException;
-import org.pagalpandas.repo.UserRepository;
+import org.pagalpandas.repo.LoginRepository;
+import org.pagalpandas.repo.ProfileRepository;
 import org.pagalpandas.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
@@ -21,22 +24,46 @@ import static org.pagalpandas.utils.Constants.*;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    UserRepository repository;
+    ProfileRepository profileRepo;
 
-    public LoginResponseDTO login(CredentialsDTO creds) throws UnauthorizedException {
-        // TODO: Perform basic validations
+    @Autowired
+    LoginRepository loginRepo;
 
-        // Check matching credentials.
-        boolean isMatch = this.repository.matchCredentials(creds.email, creds.passwordHash);
-        if (!isMatch) {
+    public LoginResponseDTO login(CredentialsDTO credentials) throws UnauthorizedException {
+
+        // fetch user profile from DB with the provided email an password
+        // check if there is any user exist or not.
+        // if yes return valid token.
+        // if not throw some sort of error.
+
+
+        if(credentials == null ) throw new IllegalArgumentException();
+
+        Optional<Login> repoResponse = this.loginRepo.findById(credentials.email);
+
+        if (repoResponse.isEmpty()) {
             throw new UnauthorizedException();
         }
 
-        Profile profile = this.repository.getProfile(creds.email);
-        String token = generateToken(profile);
+        Login repoUser = repoResponse.get();
+
+        if (!this.matchCredentials(credentials.passwordHash, repoUser.getPassword())) {
+            throw new UnauthorizedException();
+        }
+
+        Profile userProfile = this.profileRepo.findByEmail(credentials.email);
+        String token = generateToken(userProfile);
         LoginResponseDTO response = new LoginResponseDTO();
         response.setToken(token);
+
         return response;
+
+
+    }
+
+
+    private boolean matchCredentials(String inputHashPwd, String persistedHashPwd) {
+        return inputHashPwd.equalsIgnoreCase(persistedHashPwd);
     }
 
     private String generateToken(Profile profile) {
