@@ -1,0 +1,36 @@
+.dimo-search {
+
+  height: 65px;
+  background: black;
+  color: white;
+  padding: 0 15px;
+  .logo {
+    display: inline-block;
+    width: 20%;
+  }
+  .search {
+    //display: flex;
+    //justify-content: center;
+    //align-items: center;
+    //flex-direction: column;
+    display: inline-block;
+    //width: 80%;
+    text-align: right;
+    //border-color: #7f7f7f;
+    mat-icon {
+      position: absolute;
+      right: 0;
+    }
+
+    //.mat-input-flex.mat-form-field-flex{
+    //  border: 1px white;
+    //}
+  }
+
+  .inputField {
+    width: 80%;
+    text-align: left;
+  }
+
+}
+

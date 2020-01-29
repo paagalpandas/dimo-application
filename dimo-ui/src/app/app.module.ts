@@ -10,11 +10,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 
 import { DashboardComponent } from './containers/components/dashboard.component';
+import { SearchComponent } from './containers/components/search.component';
+import { SearchResultsComponent } from './containers/components/SearchResults.Component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent
+    DashboardComponent,
+    SearchComponent,
+    SearchResultsComponent
   ],
   imports: [
     BrowserModule,
