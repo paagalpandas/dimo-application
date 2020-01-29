@@ -6,17 +6,21 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.pagalpandas.dto.CredentialsDTO;
 import org.pagalpandas.dto.LoginResponseDTO;
-import org.pagalpandas.entity.Profile;
+import org.pagalpandas.dto.UserDTO;
+import org.pagalpandas.entity.User;
 import org.pagalpandas.entity.Role;
 import org.pagalpandas.exceptions.UnauthorizedException;
+import org.pagalpandas.exceptions.UserAlreadyExistsException;
 import org.pagalpandas.repo.UserRepository;
 
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.pagalpandas.utils.Constants.AUTHORITIES;
@@ -39,14 +43,14 @@ class UserServiceImplTest {
     public void loginSuccessful() throws UnauthorizedException {
         when(repository.matchCredentials(any(), any())).thenReturn(true);
 
-        Profile profile = new Profile();
-        profile.setId("007");
-        profile.setFirstName("Foo");
-        profile.setLastName("Bar");
-        profile.setEmail("foo@bar.com");
-        profile.setRoles(Arrays.asList(Role.ROLE_ADMIN, Role.ROLE_VIEWER));
+        User user = new User();
+       // user.setId("007");
+        user.setFirstName("Foo");
+        user.setLastName("Bar");
+        user.setEmail("foo@bar.com");
+        user.setRoles(Arrays.asList(Role.ROLE_ADMIN, Role.ROLE_VIEWER));
 
-        when(repository.getProfile("foo@bar.com")).thenReturn(profile);
+        when(repository.getProfile("foo@bar.com")).thenReturn(user);
         CredentialsDTO dto = new CredentialsDTO("foo@bar.com", "passwordHash");
         LoginResponseDTO responseDTO = service.login(dto);
         assertNotNull(responseDTO);
@@ -73,5 +77,49 @@ class UserServiceImplTest {
         return Jwts.parser()
                 .setSigningKey(SECRET.getBytes())
                 .parseClaimsJws(token).getBody();
+    }
+
+    /*@Test
+    public void registerSuccess(){
+        when(repository.)
+    }*/
+
+    @Test
+    public void hashPassword(){
+        assertEquals("3PFIMprNmwlw7uSNAUW1fpdWOmZ0yFAs3P+uf09Oj4k=",service.generateHashPassword("abc"));
+        assertEquals("3PFIMprNmwlw7uSNAUW1fpdWOmZ0yFAs3P+uf09Oj4k=",service.generateHashPassword("abc"));
+    }
+
+    @Test
+    public void testNewUser() throws UserAlreadyExistsException {
+        String emailId="nitikathareja@gmail.com";
+        when(repository.findByEmail(emailId)).thenReturn(null);
+        when(repository.save(Mockito.any(User.class))).thenReturn(getDummyUser());
+        assertEquals(1l,service.register(getUserDTO()));
+        assertFalse(service.checkExistingUser(emailId));
+
+    }
+
+    //@Test(expected= UserAlreadyExistsException.class)
+    @Test
+    public void testAlreadyExistingUser(){
+
+        String emailId="nitikathareja@gmail.com";
+        when(repository.findByEmail(emailId)).thenReturn(getDummyUser());
+        assertTrue(service.checkExistingUser(emailId));
+
+    }
+
+    private User getDummyUser(){
+        User user = new User();
+        user.setId(1l);
+        user.setEmail("nitikathareja@gmail.com");
+        return user;
+    }
+
+    private UserDTO getUserDTO(){
+        UserDTO userDTO = new UserDTO();
+        userDTO.setEmail("nitikathareja@gmail.com");
+        return userDTO;
     }
 }
