@@ -4,8 +4,9 @@
       <mat-card class="custom-card" *ngFor="let movie of movies">
         <mat-card-title>{{movie.title}}</mat-card-title>
         <mat-card-subtitle>{{movie.tagline}}</mat-card-subtitle>
-        <img mat-card-image [attr.src]="movie.poster">
+        <img mat-card-image [attr.src]="movie.poster" (click)="moviedetails(movie.id)">
       </mat-card>
     </div>
   </div>
 </div>
+
