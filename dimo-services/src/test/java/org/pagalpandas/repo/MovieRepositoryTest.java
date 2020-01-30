@@ -31,7 +31,7 @@ public class MovieRepositoryTest {
     public void testSearchContainInTitleForSome(){
 
         List<Movie> resultList = movieRepository.findByTitleIgnoreCaseContaining("The");
-        assertEquals(38, resultList.size());
+        assertEquals(1455, resultList.size());
     }
 
 }
