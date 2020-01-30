@@ -9,6 +9,8 @@ export class ProfileService {
 
   public isAuthenticated: Subject<boolean> = new Subject();
 
+  public showLoader: Subject<boolean> = new Subject();
+
   constructor() {
   }
 
@@ -21,7 +23,5 @@ export class ProfileService {
     return this.token;
   }
 
-  // isAuthenticated(): boolean {
-  //   return this.token == null;
-  // }
+
 }

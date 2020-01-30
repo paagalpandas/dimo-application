@@ -5,7 +5,7 @@ import { IMovieData } from '../helpers/dashboard.interfaces';
 @Component({
   selector: "searchresults",
   templateUrl: '../views/searchresults.component.html',
-  styleUrls: ['../styles/scss/dashboard.component.scss']
+  styleUrls: ['../styles/scss/searchresults.component.scss']
 })
 export class SearchResultsComponent implements OnInit {
   public movies: Array<IMovieData>;
