@@ -43,8 +43,8 @@ export class SignUpComponent implements ErrorStateMatcher,OnInit{
       lastName : new FormControl(null,Validators.required),
       email : new FormControl('',[Validators.email,Validators.required]),
       password : new FormControl('', [Validators.required,Validators.minLength(8)]),
-      confirmPassword : new FormControl('', [Validators.required,Validators.minLength(8),this.checkPasswords])
-    });
+      confirmPassword : new FormControl('')
+    }, this.checkPasswords);
   }
 
   checkPasswords(userForm: FormGroup) {
@@ -73,6 +73,9 @@ export class SignUpComponent implements ErrorStateMatcher,OnInit{
 
     }
 
+    if(!(user.firstName && user.lastName && user.email && user.password))
+      return;
+
     let headers={
       'Content-Type':'application/json'
     };
@@ -83,9 +86,12 @@ export class SignUpComponent implements ErrorStateMatcher,OnInit{
       this.message("User registered successfully. Please proceed to login.");
     },
       err => {
-      let response=err as ResponseDTO
-        console.log(err);
-        this.message(response.errorResponse[0].errorMessage);
+      // let response=err as ResponseDTO
+        this.message("User already exists. Please try with different email address.");
+        // console.log(response);
+        // console.log(err);
+        //
+        // this.message(response.errorResponse[0].errorMessage);
       });
   }
 

@@ -35,9 +35,11 @@
 
       <mat-form-field class="dimo-field">
         <input type="password" matInput placeholder="Confirm Password" name="confirmPassword" formControlName="confirmPassword" required = true ngModel [type]="hide ? 'password' : 'text'">
+
         <mat-error *ngIf="userForm.hasError('notSame')">
           Passwords do not match.
         </mat-error>
+
         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
