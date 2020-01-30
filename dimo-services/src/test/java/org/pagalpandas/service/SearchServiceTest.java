@@ -5,23 +5,31 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.pagalpandas.dto.MovieDTO;
 import org.pagalpandas.entity.Movie;
 import org.pagalpandas.repo.MovieRepository;
 import org.pagalpandas.service.impl.SearchServiceImpl;
+import org.pagalpandas.util.MovieEntityDTOConverter;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
+@SpringBootTest
 public class SearchServiceTest {
 
     @Mock
     MovieRepository  movieRepository;
 
+    @Mock
+    MovieEntityDTOConverter movieEntityDTOConverter;
+
     @InjectMocks
-    SearchService searchService = new SearchServiceImpl();
+    SearchServiceImpl searchService;
 
     @BeforeEach
     public void setMock(){
@@ -32,11 +40,13 @@ public class SearchServiceTest {
     public void testSearchSingleWordInTitleSuccess() throws Exception {
 
         List<Movie> expectedSearchResult = getExpectedSearchResult();
+
         when(movieRepository.findByTitleIgnoreCaseContaining("1917")).thenReturn(expectedSearchResult);
+        when(movieEntityDTOConverter.convertEntityToDTO(any())).thenReturn(new MovieDTO());
 
-        List<Movie> searchResult = searchService.searchByKeyWord("1917");
-        assertEquals(expectedSearchResult, searchResult);
+        List<MovieDTO> searchResult = searchService.searchByKeyWord("1917");
 
+        assertEquals(expectedSearchResult.size(),searchResult.size());
     }
 
     @Test
@@ -45,7 +55,7 @@ public class SearchServiceTest {
         List<Movie> expectedSearchResult = getExpectedSearchResult();
         when(movieRepository.findByTitleIgnoreCaseContaining("1917")).thenReturn(expectedSearchResult);
 
-        List<Movie> searchResult = searchService.searchByKeyWord("Mission Impossible");
+        List<MovieDTO> searchResult = searchService.searchByKeyWord("Mission Impossible");
         assertEquals(0, searchResult.size() );
     }
 
@@ -54,10 +64,10 @@ public class SearchServiceTest {
 
         List<Movie> expectedSearchResult = getExpectedSearchResultFoSpacesTest();
         when(movieRepository.findByTitleIgnoreCaseContaining("The Good")).thenReturn(expectedSearchResult);
+        when(movieEntityDTOConverter.convertEntityToDTO(any())).thenReturn(new MovieDTO());
 
-        List<Movie> resultList = searchService.searchByKeyWord("The Good");
+        List<MovieDTO> resultList = searchService.searchByKeyWord("The Good");
         assertEquals(3, resultList.size());
-        assertEquals("The Good Dinosaur", ((Movie)resultList.get(0)).getTitle());
     }
 
     @Test
@@ -66,7 +76,7 @@ public class SearchServiceTest {
         List<Movie> expectedSearchResult = getExpectedSearchResultFoSpacesTest();
         when(movieRepository.findByTitleIgnoreCaseContaining("The Good")).thenReturn(expectedSearchResult);
 
-        List<Movie> resultList = searchService.searchByKeyWord("TheGood");
+        List<MovieDTO> resultList = searchService.searchByKeyWord("TheGood");
         assertEquals(0, resultList.size());
 
     }
@@ -75,8 +85,9 @@ public class SearchServiceTest {
     public void testSearchStringWithLeadingSpacesContainsInTitle() throws Exception {
         List<Movie> expectedSearchResult = getExpectedSearchResultFoSpacesTest();
         when(movieRepository.findByTitleIgnoreCaseContaining("The Good")).thenReturn(expectedSearchResult);
+        when(movieEntityDTOConverter.convertEntityToDTO(any())).thenReturn(new MovieDTO());
 
-        List<Movie> resultList = searchService.searchByKeyWord("    The Good");
+        List<MovieDTO> resultList = searchService.searchByKeyWord("    The Good");
         assertEquals(3, resultList.size());
     }
 
@@ -85,8 +96,9 @@ public class SearchServiceTest {
 
         List<Movie> expectedSearchResult = getExpectedSearchResultFoSpacesTest();
         when(movieRepository.findByTitleIgnoreCaseContaining("The Good")).thenReturn(expectedSearchResult);
+        when(movieEntityDTOConverter.convertEntityToDTO(any())).thenReturn(new MovieDTO());
 
-        List<Movie> resultList = searchService.searchByKeyWord("The Good   ");
+        List<MovieDTO> resultList = searchService.searchByKeyWord("The Good   ");
         assertEquals(3, resultList.size());
     }
 

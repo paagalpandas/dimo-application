@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { IMovieData } from '../containers/helpers/dashboard.interfaces';
 
 @Injectable({
@@ -6,15 +7,8 @@ import { IMovieData } from '../containers/helpers/dashboard.interfaces';
 })
 export class SearchResultStateService {
   private movies: Array<IMovieData>;
+  public subject: BehaviorSubject<Array<IMovieData>> = new BehaviorSubject(null);
 
   constructor() {
-  }
-
-  setMovies(token: Array<IMovieData>) {
-    this.movies = token;
-  }
-
-  getMovies(): Array<IMovieData> {
-    return this.movies;
   }
 }
