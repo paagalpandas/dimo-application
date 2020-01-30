@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IMovieData } from '../helpers/dashboard.interfaces';
 import { SearchResultStateService } from 'src/app/services/SearchResultStateService';
+import { IMovieData } from '../helpers/dashboard.interfaces';
 
 @Component({
   selector: "searchresults",
@@ -14,7 +14,8 @@ export class SearchResultsComponent implements OnInit {
   }
 
   ngOnInit() {
-    var data = this.searchResultStateService.getMovies();
-    this.movies = data as Array<IMovieData>;
+    this.searchResultStateService.subject.subscribe(movieList => {
+      this.movies = movieList;
+    });
   }
 }
