@@ -1,7 +1,5 @@
 package org.pagalpandas.dto;
 
-import org.pagalpandas.entity.Movie;
-
 import java.util.List;
 
 public class MovieDetailsDTO {
@@ -10,7 +8,7 @@ public class MovieDetailsDTO {
     private String tagLine;
     private String language;
     private List<String> genre;
-    private List<Movie> similarMovies;
+    private List<MovieDTO> similarMovies;
     private String overview;
     private String thumbNail;
 
@@ -54,11 +52,11 @@ public class MovieDetailsDTO {
         this.genre = genre;
     }
 
-    public List<Movie> getSimilarMovies() {
+    public List<MovieDTO> getSimilarMovies() {
         return similarMovies;
     }
 
-    public void setSimilarMovies(List<Movie> similarMovies) {
+    public void setSimilarMovies(List<MovieDTO> similarMovies) {
         this.similarMovies = similarMovies;
     }
 
