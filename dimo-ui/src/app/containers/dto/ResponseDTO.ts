@@ -1,3 +1,6 @@
-export class LoginResponseDTO {
-  public token: string;
+import {ErrorDTO} from "./ErrorDTO";
+
+export class ResponseDTO {
+  public data: string;
+  public errorResponse:Array<ErrorDTO>;
 }

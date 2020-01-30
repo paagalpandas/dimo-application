@@ -15,6 +15,8 @@ import {Router} from "@angular/router";
 import {IUser} from "../helpers/entrypoint.interfaces";
 import {LoginResponseDTO} from "../dto/LoginResponseDTO";
 import {ErrorStateMatcher} from "@angular/material/core";
+import {ResponseDTO} from "../dto/ResponseDTO";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 
 @Component({
@@ -22,6 +24,7 @@ import {ErrorStateMatcher} from "@angular/material/core";
   templateUrl: '../views/signup.component.html',
   styleUrls: ['../styles/scss/signup.component.scss']
 })
+
 export class SignUpComponent implements ErrorStateMatcher,OnInit{
 
   public User: IUser;
@@ -32,7 +35,7 @@ export class SignUpComponent implements ErrorStateMatcher,OnInit{
   name: string;
   email:string;
 
-  constructor(private http: HttpClient, private profileService: ProfileService, private router: Router) {}
+  constructor(private http: HttpClient, private profileService: ProfileService, private router: Router,private _snackBar: MatSnackBar) {}
 
   ngOnInit(){
     this.userForm = new FormGroup({
@@ -54,6 +57,11 @@ export class SignUpComponent implements ErrorStateMatcher,OnInit{
     return null;
   }
 
+  message(message: string) {
+    this._snackBar.open(message, null, {
+      duration: 2000,
+    });
+  }
 
   onSignup(){
 
@@ -65,15 +73,24 @@ export class SignUpComponent implements ErrorStateMatcher,OnInit{
 
     }
 
-    this.http.post("http://dimoapp-env.usymxppnt2.ap-south-1.elasticbeanstalk.com/api/users/register",(user)).subscribe(data=>{
-      let response = data as LoginResponseDTO;
-      this.profileService.setToken(response.token);
-    });
+    let headers={
+      'Content-Type':'application/json'
+    };
+
+    this.http.post("http://dimoapp-env.usymxppnt2.ap-south-1.elasticbeanstalk.com/api/users/register",(user),{headers:headers}).subscribe(data=>{
+      let response = data as ResponseDTO;
+      console.log(response);
+      this.message("User registered successfully. Please proceed to login.");
+    },
+      err => {
+      let response=err as ResponseDTO
+        console.log(err);
+        this.message(response.errorResponse[0].errorMessage);
+      });
   }
 
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     return false;
   }
-
 
 }
