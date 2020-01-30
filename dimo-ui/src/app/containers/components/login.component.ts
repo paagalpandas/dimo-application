@@ -31,13 +31,13 @@ export class LoginComponent {
 
     this.http.post("/api/users/login", credentials)
       .subscribe(data => {
-        let response = data as LoginResponseDTO;
+        const response = data as LoginResponseDTO;
         this.profileService.setToken(response.token);
         this.router.navigate(["dashboard"]);
-      },
-        err => {
-          this.showErr = true;
-        });
+      }, err => {
+        this.showErr = true;
+        console.log(err);
+      });
   }
 }
 

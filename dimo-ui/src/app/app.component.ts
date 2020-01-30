@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { SearchboxComponent } from '../app/containers/components/searchbox.component';
-import { ProfileService} from './services/ProfileService';
+import { ProfileService } from './services/ProfileService';
 
 @Component({
   selector: 'app-root',
@@ -13,8 +13,9 @@ export class AppComponent {
 
   public showHeader = false;
 
-  constructor(private profileService :  ProfileService){
-
-//     this.profileService.isAuthenticated()
+  constructor(private profileService: ProfileService) {
+    this.profileService.isAuthenticated.subscribe(authenticated => {
+      this.showHeader = authenticated;
+    });
   }
 }
