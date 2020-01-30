@@ -20,11 +20,17 @@ import {HttpClientModule} from '@angular/common/http';
 import {MatDialogModule} from '@angular/material/dialog';
 
 
+import { SearchboxComponent } from '../app/containers/components/searchbox.component';
+import { SearchResultsComponent } from "./containers/components/searchresults.component";
+
+
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     LoginComponent,
+    SearchboxComponent,
+    SearchResultsComponent,
     EntryPointComponent,
     SignUpComponent
   ],

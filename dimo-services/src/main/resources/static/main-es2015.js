@@ -49,6 +49,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/containers/views/entrypoint.component.html":
+/*!**************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/containers/views/entrypoint.component.html ***!
+  \**************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"entrypoint-container\">\n  <mat-tab-group dynamicHeight>\n  <mat-tab label=\"Register\">\n      <dimo-signup></dimo-signup>\n  </mat-tab>\n\n  <mat-tab label=\"Log in\">\n    <dimo-login></dimo-login>\n  </mat-tab>\n</mat-tab-group>\n\n\n");
+
+/***/ }),
+
 /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/containers/views/login.component.html":
 /*!*********************************************************************************************!*\
   !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/containers/views/login.component.html ***!
@@ -58,7 +71,20 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<mat-tab-group dynamicHeight>\n  <mat-tab label=\"Register\">\n    <div class=\"example-small-box mat-elevation-z4\">\n      <mat-card class=\"box\">\n        <mat-card-header>\n          <mat-card-title>Coming Soon</mat-card-title>\n        </mat-card-header>\n      </mat-card>\n    </div>\n  </mat-tab>\n  <mat-tab label=\"Log in\">\n    <div class=\"example-large-box mat-elevation-z4\">\n\n        <div class=\"login-wrapper\" fxLayout=\"row\" fxLayoutAlign=\"center center\">\n\n          <mat-card class=\"box\">\n            <mat-card-header>\n              <mat-card-title>Log in</mat-card-title>\n            </mat-card-header>\n\n            <form class=\"example-form\" #f=\"ngForm\" (ngSubmit)=\"onSubmit(f)\">\n              <mat-card-content>\n                <mat-form-field class=\"example-full-width\">\n                  <input matInput placeholder=\"Email\" name=\"email\" ngModel>\n                </mat-form-field>\n\n                <mat-form-field class=\"example-full-width\">\n                  <input type=\"password\" matInput placeholder=\"Password\" name=\"password\" ngModel>\n                </mat-form-field>\n              </mat-card-content>\n              <button mat-stroked-button color=\"accent\" class=\"btn-block\">Log in</button>\n            </form>\n          </mat-card>\n\n      </div>\n    </div>\n  </mat-tab>\n</mat-tab-group>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<mat-card class=\"box\">\n  <form class=\"example-form\" #f=\"ngForm\" (ngSubmit)=\"onSubmit(f)\">\n    <mat-card-content>\n      <p>\n      <mat-form-field class=\"example-full-width\">\n        <input matInput placeholder=\"Email\" name=\"email\" ngModel>\n      </mat-form-field>\n      </p>\n      <p>\n      <mat-form-field class=\"example-full-width\">\n        <input type=\"password\" matInput placeholder=\"Password\" name=\"password\" ngModel>\n        <button mat-icon-button matSuffix (click)=\"hide = !hide\" [attr.aria-label]=\"'Hide password'\" [attr.aria-pressed]=\"hide\">\n          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>\n        </button>\n      </mat-form-field>\n      </p>\n\n    </mat-card-content>\n    <button mat-stroked-button color=\"accent\" class=\"btn-block\">Log in</button>\n  </form>\n</mat-card>\n");
+
+/***/ }),
+
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/containers/views/signup.component.html":
+/*!**********************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/containers/views/signup.component.html ***!
+  \**********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<form class=\"example-form\" #f=\"ngForm\" (ngSubmit)=\"onSignup(f)\">\n    <mat-card-content>\n      <p>\n      <mat-form-field class=\"dimo-field\">\n        <input matInput placeholder=\"Name\" name=\"name\"  required=true ngModel>\n      </mat-form-field>\n      </p>\n\n      <p>\n        <mat-form-field class=\"dimo-field\">\n          <input type=\"email\" matInput placeholder=\"Email\" name=\"email\" required=true [formControl]=\"emailFormControl\" ngModel>\n          <mat-error *ngIf=\"emailFormControl.hasError('email')\">\n              Please enter a valid email address\n            </mat-error>\n        </mat-form-field>\n      </p>\n\n      <p>\n        <mat-form-field class=\"dimo-field\">\n          <input type=\"password\" matInput placeholder=\"Password\" name=\"password\" [formControl]=\"passwordFormControl\" required = true ngModel [type]=\"hide ? 'password' : 'text'\" >\n          <button mat-icon-button matSuffix (click)=\"hide = !hide\" [attr.aria-label]=\"'Hide password'\" [attr.aria-pressed]=\"hide\">\n            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>\n            </button>\n            <mat-error *ngIf=\"passwordFormControl.hasError('password')\">\n              Please enter a password with minimum 8 characters.\n            </mat-error>\n        </mat-form-field>\n      </p>\n\n      <p>\n        <mat-form-field class=\"dimo-field\">\n          <input type=\"password\" matInput placeholder=\"Confirm Password\" name=\"confirmPassword\" [formControl]=\"passwordFormControl\" required = true>\n          <mat-error *ngIf=\"passwordFormControl.hasError('confirmPassword')\">\n            Please enter a valid email address\n          </mat-error>\n        </mat-form-field>\n      </p>\n\n    </mat-card-content>\n  <button mat-raised-button color=\"primary\">Register</button>\n  </form>\n");
 
 /***/ }),
 
@@ -305,16 +331,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 /* harmony import */ var _containers_components_dashboard_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./containers/components/dashboard.component */ "./src/app/containers/components/dashboard.component.ts");
-/* harmony import */ var _containers_components_login_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./containers/components/login.component */ "./src/app/containers/components/login.component.ts");
+/* harmony import */ var _containers_components_entrypoint_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./containers/components/entrypoint.component */ "./src/app/containers/components/entrypoint.component.ts");
 
 
 
 
 
 const routes = [
-    { path: '', redirectTo: '/login', pathMatch: 'full' },
+    { path: '', redirectTo: '/entrypoint', pathMatch: 'full' },
     { path: 'dashboard', component: _containers_components_dashboard_component__WEBPACK_IMPORTED_MODULE_3__["DashboardComponent"] },
-    { path: 'login', component: _containers_components_login_component__WEBPACK_IMPORTED_MODULE_4__["LoginComponent"] }
+    { path: 'entrypoint', component: _containers_components_entrypoint_component__WEBPACK_IMPORTED_MODULE_4__["EntryPointComponent"] }
 ];
 let AppRoutingModule = class AppRoutingModule {
 };
@@ -338,7 +364,7 @@ AppRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (".dimo-header {\n  height: 65px;\n  background: black;\n  color: white;\n  padding: 0 15px;\n}\n.dimo-header .logo {\n  display: inline-block;\n  width: 40%;\n}\n.dimo-header .search {\n  display: inline-block;\n  width: 60%;\n  text-align: right;\n}\n.dimo-header .search mat-icon {\n  position: absolute;\n  right: 0;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9zYW5rZXRnYi93b3Jrc3BhY2UvYm9vdGNhbXAvZGltby1hcHBsaWNhdGlvbi9kaW1vLXVpL3NyYy9hcHAvYXBwLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9hcHAuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxZQUFBO0VBQ0EsaUJBQUE7RUFDQSxZQUFBO0VBQ0EsZUFBQTtBQ0NGO0FEQUU7RUFDRSxxQkFBQTtFQUNBLFVBQUE7QUNFSjtBREFFO0VBQ0UscUJBQUE7RUFDQSxVQUFBO0VBQ0EsaUJBQUE7QUNFSjtBREFJO0VBQ0Usa0JBQUE7RUFDQSxRQUFBO0FDRU4iLCJmaWxlIjoic3JjL2FwcC9hcHAuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuZGltby1oZWFkZXIge1xuICBoZWlnaHQ6IDY1cHg7XG4gIGJhY2tncm91bmQ6IGJsYWNrO1xuICBjb2xvcjogd2hpdGU7XG4gIHBhZGRpbmc6IDAgMTVweDtcbiAgLmxvZ28ge1xuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgICB3aWR0aDogNDAlO1xuICB9XG4gIC5zZWFyY2gge1xuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgICB3aWR0aDogNjAlO1xuICAgIHRleHQtYWxpZ246IHJpZ2h0O1xuXG4gICAgbWF0LWljb24ge1xuICAgICAgcG9zaXRpb246IGFic29sdXRlO1xuICAgICAgcmlnaHQ6IDA7XG4gICAgfVxuICB9XG59XG5cbiIsIi5kaW1vLWhlYWRlciB7XG4gIGhlaWdodDogNjVweDtcbiAgYmFja2dyb3VuZDogYmxhY2s7XG4gIGNvbG9yOiB3aGl0ZTtcbiAgcGFkZGluZzogMCAxNXB4O1xufVxuLmRpbW8taGVhZGVyIC5sb2dvIHtcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICB3aWR0aDogNDAlO1xufVxuLmRpbW8taGVhZGVyIC5zZWFyY2gge1xuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gIHdpZHRoOiA2MCU7XG4gIHRleHQtYWxpZ246IHJpZ2h0O1xufVxuLmRpbW8taGVhZGVyIC5zZWFyY2ggbWF0LWljb24ge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHJpZ2h0OiAwO1xufSJdfQ== */");
+/* harmony default export */ __webpack_exports__["default"] = (".dimo-header {\n  height: 65px;\n  background: black;\n  color: white;\n  padding: 0 15px;\n}\n.dimo-header .logo {\n  display: inline-block;\n  width: 40%;\n}\n.dimo-header .search {\n  display: inline-block;\n  width: 60%;\n  text-align: right;\n}\n.dimo-header .search mat-icon {\n  position: absolute;\n  right: 0;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9jaGFoYXQudGFuZWphL0Rvd25sb2Fkcy9kaW1vLWFwcGxpY2F0aW9uL2RpbW8tdWkvc3JjL2FwcC9hcHAuY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL2FwcC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLFlBQUE7RUFDQSxpQkFBQTtFQUNBLFlBQUE7RUFDQSxlQUFBO0FDQ0Y7QURBRTtFQUNFLHFCQUFBO0VBQ0EsVUFBQTtBQ0VKO0FEQUU7RUFDRSxxQkFBQTtFQUNBLFVBQUE7RUFDQSxpQkFBQTtBQ0VKO0FEQUk7RUFDRSxrQkFBQTtFQUNBLFFBQUE7QUNFTiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5kaW1vLWhlYWRlciB7XG4gIGhlaWdodDogNjVweDtcbiAgYmFja2dyb3VuZDogYmxhY2s7XG4gIGNvbG9yOiB3aGl0ZTtcbiAgcGFkZGluZzogMCAxNXB4O1xuICAubG9nbyB7XG4gICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICAgIHdpZHRoOiA0MCU7XG4gIH1cbiAgLnNlYXJjaCB7XG4gICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICAgIHdpZHRoOiA2MCU7XG4gICAgdGV4dC1hbGlnbjogcmlnaHQ7XG5cbiAgICBtYXQtaWNvbiB7XG4gICAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgICByaWdodDogMDtcbiAgICB9XG4gIH1cbn1cblxuIiwiLmRpbW8taGVhZGVyIHtcbiAgaGVpZ2h0OiA2NXB4O1xuICBiYWNrZ3JvdW5kOiBibGFjaztcbiAgY29sb3I6IHdoaXRlO1xuICBwYWRkaW5nOiAwIDE1cHg7XG59XG4uZGltby1oZWFkZXIgLmxvZ28ge1xuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gIHdpZHRoOiA0MCU7XG59XG4uZGltby1oZWFkZXIgLnNlYXJjaCB7XG4gIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgd2lkdGg6IDYwJTtcbiAgdGV4dC1hbGlnbjogcmlnaHQ7XG59XG4uZGltby1oZWFkZXIgLnNlYXJjaCBtYXQtaWNvbiB7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgcmlnaHQ6IDA7XG59Il19 */");
 
 /***/ }),
 
@@ -388,16 +414,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
 /* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm2015/animations.js");
-/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/esm2015/card.js");
-/* harmony import */ var _angular_material_tabs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material/tabs */ "./node_modules/@angular/material/esm2015/tabs.js");
-/* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/input */ "./node_modules/@angular/material/esm2015/input.js");
-/* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material/icon */ "./node_modules/@angular/material/esm2015/icon.js");
-/* harmony import */ var _containers_components_dashboard_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./containers/components/dashboard.component */ "./src/app/containers/components/dashboard.component.ts");
-/* harmony import */ var _containers_components_login_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./containers/components/login.component */ "./src/app/containers/components/login.component.ts");
-/* harmony import */ var _angular_material_form_field__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/material/form-field */ "./node_modules/@angular/material/esm2015/form-field.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
-/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+/* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/material/button */ "./node_modules/@angular/material/esm2015/button.js");
+/* harmony import */ var _angular_material_card__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material/card */ "./node_modules/@angular/material/esm2015/card.js");
+/* harmony import */ var _angular_material_tabs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/tabs */ "./node_modules/@angular/material/esm2015/tabs.js");
+/* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material/input */ "./node_modules/@angular/material/esm2015/input.js");
+/* harmony import */ var _angular_material_icon__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/material/icon */ "./node_modules/@angular/material/esm2015/icon.js");
+/* harmony import */ var _containers_components_dashboard_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./containers/components/dashboard.component */ "./src/app/containers/components/dashboard.component.ts");
+/* harmony import */ var _containers_components_login_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./containers/components/login.component */ "./src/app/containers/components/login.component.ts");
+/* harmony import */ var _containers_components_entrypoint_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./containers/components/entrypoint.component */ "./src/app/containers/components/entrypoint.component.ts");
+/* harmony import */ var _containers_components_signup_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./containers/components/signup.component */ "./src/app/containers/components/signup.component.ts");
+/* harmony import */ var _angular_material_form_field__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/material/form-field */ "./node_modules/@angular/material/esm2015/form-field.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+
+
+
 
 
 
@@ -419,21 +451,24 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
         declarations: [
             _app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"],
-            _containers_components_dashboard_component__WEBPACK_IMPORTED_MODULE_9__["DashboardComponent"],
-            _containers_components_login_component__WEBPACK_IMPORTED_MODULE_10__["LoginComponent"]
+            _containers_components_dashboard_component__WEBPACK_IMPORTED_MODULE_10__["DashboardComponent"],
+            _containers_components_login_component__WEBPACK_IMPORTED_MODULE_11__["LoginComponent"],
+            _containers_components_entrypoint_component__WEBPACK_IMPORTED_MODULE_12__["EntryPointComponent"],
+            _containers_components_signup_component__WEBPACK_IMPORTED_MODULE_13__["SignUpComponent"]
         ],
         imports: [
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
             _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_4__["BrowserAnimationsModule"],
-            _angular_material_card__WEBPACK_IMPORTED_MODULE_5__["MatCardModule"],
-            _angular_material_tabs__WEBPACK_IMPORTED_MODULE_6__["MatTabsModule"],
-            _angular_material_input__WEBPACK_IMPORTED_MODULE_7__["MatInputModule"],
-            _angular_material_icon__WEBPACK_IMPORTED_MODULE_8__["MatIconModule"],
-            _angular_material_form_field__WEBPACK_IMPORTED_MODULE_11__["MatFormFieldModule"],
-            _angular_forms__WEBPACK_IMPORTED_MODULE_12__["ReactiveFormsModule"],
-            _angular_common_http__WEBPACK_IMPORTED_MODULE_14__["HttpClientModule"],
-            _angular_forms__WEBPACK_IMPORTED_MODULE_12__["FormsModule"],
-            _app_routing_module__WEBPACK_IMPORTED_MODULE_13__["AppRoutingModule"]
+            _angular_material_card__WEBPACK_IMPORTED_MODULE_6__["MatCardModule"],
+            _angular_material_tabs__WEBPACK_IMPORTED_MODULE_7__["MatTabsModule"],
+            _angular_material_input__WEBPACK_IMPORTED_MODULE_8__["MatInputModule"],
+            _angular_material_icon__WEBPACK_IMPORTED_MODULE_9__["MatIconModule"],
+            _angular_material_form_field__WEBPACK_IMPORTED_MODULE_14__["MatFormFieldModule"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_15__["ReactiveFormsModule"],
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_17__["HttpClientModule"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_15__["FormsModule"],
+            _app_routing_module__WEBPACK_IMPORTED_MODULE_16__["AppRoutingModule"],
+            _angular_material_button__WEBPACK_IMPORTED_MODULE_5__["MatButtonModule"]
         ],
         providers: [],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]]
@@ -491,6 +526,46 @@ DashboardComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
+/***/ "./src/app/containers/components/entrypoint.component.ts":
+/*!***************************************************************!*\
+  !*** ./src/app/containers/components/entrypoint.component.ts ***!
+  \***************************************************************/
+/*! exports provided: EntryPointComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EntryPointComponent", function() { return EntryPointComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+/* harmony import */ var _services_ProfileService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/ProfileService */ "./src/app/services/ProfileService.ts");
+
+
+
+
+let EntryPointComponent = class EntryPointComponent {
+    constructor(http, profileService) {
+        this.http = http;
+        this.profileService = profileService;
+    }
+};
+EntryPointComponent.ctorParameters = () => [
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] },
+    { type: _services_ProfileService__WEBPACK_IMPORTED_MODULE_3__["ProfileService"] }
+];
+EntryPointComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: "dimo-entrypoint",
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!../views/entrypoint.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/containers/views/entrypoint.component.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ../styles/scss/entrypoint.component.scss */ "./src/app/containers/styles/scss/entrypoint.component.scss")).default]
+    })
+], EntryPointComponent);
+
+
+
+/***/ }),
+
 /***/ "./src/app/containers/components/login.component.ts":
 /*!**********************************************************!*\
   !*** ./src/app/containers/components/login.component.ts ***!
@@ -516,13 +591,14 @@ let LoginComponent = class LoginComponent {
         this.http = http;
         this.profileService = profileService;
         this.router = router;
+        this.hide = true;
     }
-    onSubmit(f) {
-        console.log(f.value.password);
-        console.log(f.value.email);
+    onSubmit(form) {
+        console.log(form.value.password);
+        console.log(form.value.email);
         var credentials = {
-            email: f.value.email,
-            password: f.value.password
+            email: form.value.email,
+            password: form.value.password
         };
         this.http.post("http://localhost:5000/api/users/login", credentials)
             .subscribe(data => {
@@ -549,6 +625,69 @@ LoginComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
+/***/ "./src/app/containers/components/signup.component.ts":
+/*!***********************************************************!*\
+  !*** ./src/app/containers/components/signup.component.ts ***!
+  \***********************************************************/
+/*! exports provided: SignUpComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SignUpComponent", function() { return SignUpComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+/* harmony import */ var _services_ProfileService__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/ProfileService */ "./src/app/services/ProfileService.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+
+
+
+
+
+
+let SignUpComponent = class SignUpComponent {
+    constructor(http, profileService, router) {
+        this.http = http;
+        this.profileService = profileService;
+        this.router = router;
+        this.emailFormControl = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].email);
+        this.passwordFormControl = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('', [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].minLength(8)]);
+        this.hide = true;
+    }
+    checkPasswords(signupgroup) {
+        let pass = signupgroup.get('password').value;
+        let confirmPass = signupgroup.get('confirmPass').value;
+        return pass === confirmPass ? null : { notSame: true };
+    }
+    onSignup(form) {
+        console.log(form.value);
+        let User;
+        this.http.post("http://localhost:5000/api/users/register", (User)).subscribe(data => {
+            let response = data;
+            this.profileService.setToken(response.token);
+            // this.router.navigate(["dashboard"]);
+        });
+    }
+};
+SignUpComponent.ctorParameters = () => [
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"] },
+    { type: _services_ProfileService__WEBPACK_IMPORTED_MODULE_4__["ProfileService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] }
+];
+SignUpComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: "dimo-signup",
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!../views/signup.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/containers/views/signup.component.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ../styles/scss/signup.component.scss */ "./src/app/containers/styles/scss/signup.component.scss")).default]
+    })
+], SignUpComponent);
+
+
+
+/***/ }),
+
 /***/ "./src/app/containers/styles/scss/dashboard.component.scss":
 /*!*****************************************************************!*\
   !*** ./src/app/containers/styles/scss/dashboard.component.scss ***!
@@ -558,7 +697,33 @@ LoginComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (".dashboard-caontainer {\n  background: #efefef;\n}\n.dashboard-caontainer .category-container {\n  padding: 10px;\n}\n.dashboard-caontainer .category-container .category-title {\n  padding: 15px;\n}\n.dashboard-caontainer .category-container .category-title .title {\n  font-size: 23px;\n  color: gray;\n  font-weight: 500;\n  display: inline-block;\n  width: 50%;\n  text-transform: uppercase;\n}\n.dashboard-caontainer .category-container .category-title .see-all {\n  display: inline-block;\n  width: 50%;\n  text-align: right;\n  font-size: 16px;\n  text-transform: uppercase;\n}\n.dashboard-caontainer .category-container .custom-card {\n  width: 270px;\n  display: inline-block;\n  margin-left: 15px;\n  margin-right: 15px;\n}\n.dashboard-caontainer .category-container .custom-card img {\n  height: 300px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9zYW5rZXRnYi93b3Jrc3BhY2UvYm9vdGNhbXAvZGltby1hcHBsaWNhdGlvbi9kaW1vLXVpL3NyYy9hcHAvY29udGFpbmVycy9zdHlsZXMvc2Nzcy9kYXNoYm9hcmQuY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL2NvbnRhaW5lcnMvc3R5bGVzL3Njc3MvZGFzaGJvYXJkLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsbUJBQUE7QUNDRjtBRENFO0VBQ0UsYUFBQTtBQ0NKO0FEQ0k7RUFDRSxhQUFBO0FDQ047QURBTTtFQUNFLGVBQUE7RUFDQSxXQUFBO0VBQ0EsZ0JBQUE7RUFDQSxxQkFBQTtFQUNBLFVBQUE7RUFDQSx5QkFBQTtBQ0VSO0FEQ007RUFDRSxxQkFBQTtFQUNBLFVBQUE7RUFDQSxpQkFBQTtFQUNBLGVBQUE7RUFDQSx5QkFBQTtBQ0NSO0FER0k7RUFDRSxZQUFBO0VBQ0EscUJBQUE7RUFDQSxpQkFBQTtFQUNBLGtCQUFBO0FDRE47QURHTTtFQUNFLGFBQUE7QUNEUiIsImZpbGUiOiJzcmMvYXBwL2NvbnRhaW5lcnMvc3R5bGVzL3Njc3MvZGFzaGJvYXJkLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmRhc2hib2FyZC1jYW9udGFpbmVyIHtcbiAgYmFja2dyb3VuZDogI2VmZWZlZjtcblxuICAuY2F0ZWdvcnktY29udGFpbmVyIHtcbiAgICBwYWRkaW5nOiAxMHB4O1xuXG4gICAgLmNhdGVnb3J5LXRpdGxlIHtcbiAgICAgIHBhZGRpbmc6IDE1cHg7XG4gICAgICAudGl0bGUge1xuICAgICAgICBmb250LXNpemU6IDIzcHg7XG4gICAgICAgIGNvbG9yOiBncmF5O1xuICAgICAgICBmb250LXdlaWdodDogNTAwO1xuICAgICAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gICAgICAgIHdpZHRoOiA1MCU7XG4gICAgICAgIHRleHQtdHJhbnNmb3JtOiB1cHBlcmNhc2U7XG4gICAgICB9XG5cbiAgICAgIC5zZWUtYWxsIHtcbiAgICAgICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICAgICAgICB3aWR0aDogNTAlO1xuICAgICAgICB0ZXh0LWFsaWduOiByaWdodDtcbiAgICAgICAgZm9udC1zaXplOiAxNnB4O1xuICAgICAgICB0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlO1xuICAgICAgfVxuICAgIH1cblxuICAgIC5jdXN0b20tY2FyZCB7XG4gICAgICB3aWR0aDogMjcwcHg7XG4gICAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gICAgICBtYXJnaW4tbGVmdDogMTVweDtcbiAgICAgIG1hcmdpbi1yaWdodDogMTVweDtcblxuICAgICAgaW1nIHtcbiAgICAgICAgaGVpZ2h0OiAzMDBweDtcbiAgICAgIH1cbiAgICB9XG4gIH1cbn1cbiIsIi5kYXNoYm9hcmQtY2FvbnRhaW5lciB7XG4gIGJhY2tncm91bmQ6ICNlZmVmZWY7XG59XG4uZGFzaGJvYXJkLWNhb250YWluZXIgLmNhdGVnb3J5LWNvbnRhaW5lciB7XG4gIHBhZGRpbmc6IDEwcHg7XG59XG4uZGFzaGJvYXJkLWNhb250YWluZXIgLmNhdGVnb3J5LWNvbnRhaW5lciAuY2F0ZWdvcnktdGl0bGUge1xuICBwYWRkaW5nOiAxNXB4O1xufVxuLmRhc2hib2FyZC1jYW9udGFpbmVyIC5jYXRlZ29yeS1jb250YWluZXIgLmNhdGVnb3J5LXRpdGxlIC50aXRsZSB7XG4gIGZvbnQtc2l6ZTogMjNweDtcbiAgY29sb3I6IGdyYXk7XG4gIGZvbnQtd2VpZ2h0OiA1MDA7XG4gIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgd2lkdGg6IDUwJTtcbiAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcbn1cbi5kYXNoYm9hcmQtY2FvbnRhaW5lciAuY2F0ZWdvcnktY29udGFpbmVyIC5jYXRlZ29yeS10aXRsZSAuc2VlLWFsbCB7XG4gIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgd2lkdGg6IDUwJTtcbiAgdGV4dC1hbGlnbjogcmlnaHQ7XG4gIGZvbnQtc2l6ZTogMTZweDtcbiAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcbn1cbi5kYXNoYm9hcmQtY2FvbnRhaW5lciAuY2F0ZWdvcnktY29udGFpbmVyIC5jdXN0b20tY2FyZCB7XG4gIHdpZHRoOiAyNzBweDtcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICBtYXJnaW4tbGVmdDogMTVweDtcbiAgbWFyZ2luLXJpZ2h0OiAxNXB4O1xufVxuLmRhc2hib2FyZC1jYW9udGFpbmVyIC5jYXRlZ29yeS1jb250YWluZXIgLmN1c3RvbS1jYXJkIGltZyB7XG4gIGhlaWdodDogMzAwcHg7XG59Il19 */");
+/* harmony default export */ __webpack_exports__["default"] = (".dashboard-caontainer {\n  background: #efefef;\n}\n.dashboard-caontainer .category-container {\n  padding: 10px;\n}\n.dashboard-caontainer .category-container .category-title {\n  padding: 15px;\n}\n.dashboard-caontainer .category-container .category-title .title {\n  font-size: 23px;\n  color: gray;\n  font-weight: 500;\n  display: inline-block;\n  width: 50%;\n  text-transform: uppercase;\n}\n.dashboard-caontainer .category-container .category-title .see-all {\n  display: inline-block;\n  width: 50%;\n  text-align: right;\n  font-size: 16px;\n  text-transform: uppercase;\n}\n.dashboard-caontainer .category-container .custom-card {\n  width: 270px;\n  display: inline-block;\n  margin-left: 15px;\n  margin-right: 15px;\n}\n.dashboard-caontainer .category-container .custom-card img {\n  height: 300px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9jaGFoYXQudGFuZWphL0Rvd25sb2Fkcy9kaW1vLWFwcGxpY2F0aW9uL2RpbW8tdWkvc3JjL2FwcC9jb250YWluZXJzL3N0eWxlcy9zY3NzL2Rhc2hib2FyZC5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvY29udGFpbmVycy9zdHlsZXMvc2Nzcy9kYXNoYm9hcmQuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxtQkFBQTtBQ0NGO0FEQ0U7RUFDRSxhQUFBO0FDQ0o7QURDSTtFQUNFLGFBQUE7QUNDTjtBREFNO0VBQ0UsZUFBQTtFQUNBLFdBQUE7RUFDQSxnQkFBQTtFQUNBLHFCQUFBO0VBQ0EsVUFBQTtFQUNBLHlCQUFBO0FDRVI7QURDTTtFQUNFLHFCQUFBO0VBQ0EsVUFBQTtFQUNBLGlCQUFBO0VBQ0EsZUFBQTtFQUNBLHlCQUFBO0FDQ1I7QURHSTtFQUNFLFlBQUE7RUFDQSxxQkFBQTtFQUNBLGlCQUFBO0VBQ0Esa0JBQUE7QUNETjtBREdNO0VBQ0UsYUFBQTtBQ0RSIiwiZmlsZSI6InNyYy9hcHAvY29udGFpbmVycy9zdHlsZXMvc2Nzcy9kYXNoYm9hcmQuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuZGFzaGJvYXJkLWNhb250YWluZXIge1xuICBiYWNrZ3JvdW5kOiAjZWZlZmVmO1xuXG4gIC5jYXRlZ29yeS1jb250YWluZXIge1xuICAgIHBhZGRpbmc6IDEwcHg7XG5cbiAgICAuY2F0ZWdvcnktdGl0bGUge1xuICAgICAgcGFkZGluZzogMTVweDtcbiAgICAgIC50aXRsZSB7XG4gICAgICAgIGZvbnQtc2l6ZTogMjNweDtcbiAgICAgICAgY29sb3I6IGdyYXk7XG4gICAgICAgIGZvbnQtd2VpZ2h0OiA1MDA7XG4gICAgICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgICAgICAgd2lkdGg6IDUwJTtcbiAgICAgICAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcbiAgICAgIH1cblxuICAgICAgLnNlZS1hbGwge1xuICAgICAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gICAgICAgIHdpZHRoOiA1MCU7XG4gICAgICAgIHRleHQtYWxpZ246IHJpZ2h0O1xuICAgICAgICBmb250LXNpemU6IDE2cHg7XG4gICAgICAgIHRleHQtdHJhbnNmb3JtOiB1cHBlcmNhc2U7XG4gICAgICB9XG4gICAgfVxuXG4gICAgLmN1c3RvbS1jYXJkIHtcbiAgICAgIHdpZHRoOiAyNzBweDtcbiAgICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgICAgIG1hcmdpbi1sZWZ0OiAxNXB4O1xuICAgICAgbWFyZ2luLXJpZ2h0OiAxNXB4O1xuXG4gICAgICBpbWcge1xuICAgICAgICBoZWlnaHQ6IDMwMHB4O1xuICAgICAgfVxuICAgIH1cbiAgfVxufVxuIiwiLmRhc2hib2FyZC1jYW9udGFpbmVyIHtcbiAgYmFja2dyb3VuZDogI2VmZWZlZjtcbn1cbi5kYXNoYm9hcmQtY2FvbnRhaW5lciAuY2F0ZWdvcnktY29udGFpbmVyIHtcbiAgcGFkZGluZzogMTBweDtcbn1cbi5kYXNoYm9hcmQtY2FvbnRhaW5lciAuY2F0ZWdvcnktY29udGFpbmVyIC5jYXRlZ29yeS10aXRsZSB7XG4gIHBhZGRpbmc6IDE1cHg7XG59XG4uZGFzaGJvYXJkLWNhb250YWluZXIgLmNhdGVnb3J5LWNvbnRhaW5lciAuY2F0ZWdvcnktdGl0bGUgLnRpdGxlIHtcbiAgZm9udC1zaXplOiAyM3B4O1xuICBjb2xvcjogZ3JheTtcbiAgZm9udC13ZWlnaHQ6IDUwMDtcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICB3aWR0aDogNTAlO1xuICB0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlO1xufVxuLmRhc2hib2FyZC1jYW9udGFpbmVyIC5jYXRlZ29yeS1jb250YWluZXIgLmNhdGVnb3J5LXRpdGxlIC5zZWUtYWxsIHtcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICB3aWR0aDogNTAlO1xuICB0ZXh0LWFsaWduOiByaWdodDtcbiAgZm9udC1zaXplOiAxNnB4O1xuICB0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlO1xufVxuLmRhc2hib2FyZC1jYW9udGFpbmVyIC5jYXRlZ29yeS1jb250YWluZXIgLmN1c3RvbS1jYXJkIHtcbiAgd2lkdGg6IDI3MHB4O1xuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gIG1hcmdpbi1sZWZ0OiAxNXB4O1xuICBtYXJnaW4tcmlnaHQ6IDE1cHg7XG59XG4uZGFzaGJvYXJkLWNhb250YWluZXIgLmNhdGVnb3J5LWNvbnRhaW5lciAuY3VzdG9tLWNhcmQgaW1nIHtcbiAgaGVpZ2h0OiAzMDBweDtcbn0iXX0= */");
+
+/***/ }),
+
+/***/ "./src/app/containers/styles/scss/entrypoint.component.scss":
+/*!******************************************************************!*\
+  !*** ./src/app/containers/styles/scss/entrypoint.component.scss ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (".container {\n  margin: auto;\n  width: 50%;\n  border: 3px solid green;\n  padding: 10px;\n}\n\n.entrypoint-container {\n  width: 500px;\n  box-shadow: 0px 10px 20px 0px rgba(50, 50, 50, 0.52);\n  border-color: #ddd;\n  border: 1px solid transparent;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9jaGFoYXQudGFuZWphL0Rvd25sb2Fkcy9kaW1vLWFwcGxpY2F0aW9uL2RpbW8tdWkvc3JjL2FwcC9jb250YWluZXJzL3N0eWxlcy9zY3NzL2VudHJ5cG9pbnQuY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL2NvbnRhaW5lcnMvc3R5bGVzL3Njc3MvZW50cnlwb2ludC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLFlBQUE7RUFDQSxVQUFBO0VBQ0EsdUJBQUE7RUFDQSxhQUFBO0FDQ0Y7O0FERUE7RUFDSSxZQUFBO0VBQ0Ysb0RBQUE7RUFDQSxrQkFBQTtFQUNBLDZCQUFBO0FDQ0YiLCJmaWxlIjoic3JjL2FwcC9jb250YWluZXJzL3N0eWxlcy9zY3NzL2VudHJ5cG9pbnQuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY29udGFpbmVye1xuICBtYXJnaW46IGF1dG87XG4gIHdpZHRoOiA1MCU7XG4gIGJvcmRlcjogM3B4IHNvbGlkIGdyZWVuO1xuICBwYWRkaW5nOiAxMHB4O1xufVxuXG4uZW50cnlwb2ludC1jb250YWluZXJ7XG4gICAgd2lkdGg6NTAwcHg7XG4gIGJveC1zaGFkb3c6IDBweCAxMHB4IDIwcHggMHB4IHJnYmEoNTAsIDUwLCA1MCwgMC41Mik7XG4gIGJvcmRlci1jb2xvcjogI2RkZDtcbiAgYm9yZGVyOiAxcHggc29saWQgdHJhbnNwYXJlbnQ7XG59XG4iLCIuY29udGFpbmVyIHtcbiAgbWFyZ2luOiBhdXRvO1xuICB3aWR0aDogNTAlO1xuICBib3JkZXI6IDNweCBzb2xpZCBncmVlbjtcbiAgcGFkZGluZzogMTBweDtcbn1cblxuLmVudHJ5cG9pbnQtY29udGFpbmVyIHtcbiAgd2lkdGg6IDUwMHB4O1xuICBib3gtc2hhZG93OiAwcHggMTBweCAyMHB4IDBweCByZ2JhKDUwLCA1MCwgNTAsIDAuNTIpO1xuICBib3JkZXItY29sb3I6ICNkZGQ7XG4gIGJvcmRlcjogMXB4IHNvbGlkIHRyYW5zcGFyZW50O1xufSJdfQ== */");
+
+/***/ }),
+
+/***/ "./src/app/containers/styles/scss/signup.component.scss":
+/*!**************************************************************!*\
+  !*** ./src/app/containers/styles/scss/signup.component.scss ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (".container {\n  position: relative;\n  width: 100%;\n  max-width: 33rem;\n  margin: 0 auto;\n  padding: 0 0.75rem;\n}\n\n.dimo-field {\n  margin: 10px;\n  display: inline-block;\n}\n\n.btn-block {\n  cursor: pointer;\n  border-radius: 0.25rem;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9jaGFoYXQudGFuZWphL0Rvd25sb2Fkcy9kaW1vLWFwcGxpY2F0aW9uL2RpbW8tdWkvc3JjL2FwcC9jb250YWluZXJzL3N0eWxlcy9zY3NzL3NpZ251cC5jb21wb25lbnQuc2NzcyIsInNyYy9hcHAvY29udGFpbmVycy9zdHlsZXMvc2Nzcy9zaWdudXAuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxrQkFBQTtFQUNBLFdBQUE7RUFDQSxnQkFBQTtFQUNBLGNBQUE7RUFDQSxrQkFBQTtBQ0NGOztBREVBO0VBQ0UsWUFBQTtFQUNBLHFCQUFBO0FDQ0Y7O0FERUE7RUFDRSxlQUFBO0VBQ0Esc0JBQUE7QUNDRiIsImZpbGUiOiJzcmMvYXBwL2NvbnRhaW5lcnMvc3R5bGVzL3Njc3Mvc2lnbnVwLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmNvbnRhaW5lciB7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgd2lkdGg6IDEwMCU7XG4gIG1heC13aWR0aDogMzNyZW07XG4gIG1hcmdpbjogMCBhdXRvO1xuICBwYWRkaW5nOiAwIC43NXJlbTtcbn1cblxuLmRpbW8tZmllbGR7XG4gIG1hcmdpbjogMTBweDtcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xufVxuXG4uYnRuLWJsb2Nre1xuICBjdXJzb3I6IHBvaW50ZXI7XG4gIGJvcmRlci1yYWRpdXM6IC4yNXJlbTtcbn1cbiIsIi5jb250YWluZXIge1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIHdpZHRoOiAxMDAlO1xuICBtYXgtd2lkdGg6IDMzcmVtO1xuICBtYXJnaW46IDAgYXV0bztcbiAgcGFkZGluZzogMCAwLjc1cmVtO1xufVxuXG4uZGltby1maWVsZCB7XG4gIG1hcmdpbjogMTBweDtcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xufVxuXG4uYnRuLWJsb2NrIHtcbiAgY3Vyc29yOiBwb2ludGVyO1xuICBib3JkZXItcmFkaXVzOiAwLjI1cmVtO1xufSJdfQ== */");
 
 /***/ }),
 
@@ -668,7 +833,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_3__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/sanketgb/workspace/bootcamp/dimo-application/dimo-ui/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /Users/chahat.taneja/Downloads/dimo-application/dimo-ui/src/main.ts */"./src/main.ts");
 
 
 /***/ })
