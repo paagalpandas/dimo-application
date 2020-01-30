@@ -35,15 +35,9 @@ public class UserServiceImpl implements UserService {
 
         if (creds == null || creds.email == null || creds.passwordHash == null) throw new IllegalArgumentException();
 
-//        User dbUser = userRepository.getUserByEmailAndPassword(creds.email,creds.passwordHash);
-//
-//        if(dbUser == null) throw new UnauthorizedException();
+        User dbUser = userRepository.getUserByEmailAndPassword(creds.email,creds.passwordHash);
 
-        User dbUser = new User();
-        dbUser.setEmail("foo@bar.com");
-        dbUser.setFirstName("Foo");
-        dbUser.setLastName("Bar");
-        dbUser.setRoles(Arrays.asList(Role.ROLE_ADMIN, Role.ROLE_VIEWER));
+        if(dbUser == null) throw new UnauthorizedException();
 
         String token = generateToken(dbUser);
 
