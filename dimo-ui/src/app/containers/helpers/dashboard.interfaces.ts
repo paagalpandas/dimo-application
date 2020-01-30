@@ -4,7 +4,7 @@ export interface ICategory {
 }
 
 export interface IMovieData {
-  name: string;
-  description: string;
-  thumbNail: string;
+  title: string;
+  tagline: string;
+  poster: string;
 }

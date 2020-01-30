@@ -2,6 +2,8 @@
   background: #efefef;
 
   .category-container {
+    height: 90vh;
+    overflow-y: auto;
     padding: 10px;
 
     .category-title {
@@ -30,6 +32,21 @@
       margin-top: 15px;
       margin-left: 15px;
       margin-right: 15px;
+
+      .mat-card-title {
+        margin-top: 0;
+        height: 30px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .mat-card-subtitle {
+        height: 15px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
 
       img {
         height: 300px;

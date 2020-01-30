@@ -1,4 +1,4 @@
-<mat-card class="box" >
+<mat-card class="login-container" >
   <form class="example-form" #f="ngForm" (ngSubmit)="onSubmit(f)">
     <mat-card-content>
       <p>
@@ -16,6 +16,7 @@
       </p>
 
     </mat-card-content>
-    <button mat-raised-button color="primary">Log In</button>
+    <p class="error-msg" *ngIf="showErr" >Invalid credentials.</p>
+    <button mat-raised-button color="primary" class="login-btn">Log In</button>
   </form>
 </mat-card>

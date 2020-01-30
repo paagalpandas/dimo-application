@@ -1,9 +1,11 @@
-.container {
-  position: relative;
-  width: 100%;
-  max-width: 33rem;
-  margin: 0 auto;
-  padding: 0 .75rem;
+.signup-container {
+  .mat-form-field{
+    width : 45%;
+   }
+
+   .signup-btn{
+    margin-left : 10px;
+   }
 }
 
 .dimo-field{

@@ -1,6 +1,4 @@
-<form class="example-form" #f="ngForm" (ngSubmit)="onSubmit(f)">
-    <mat-form-field>
-        <input matInput placeholder="Search here" name="searchString" ngModel>
-    </mat-form-field>
-    <button aria-hidden="false" aria-label="Search icon">Search</button>
+<form class="searchbox-container">
+  <input class="search-box" placeholder="Search here" name="keyword" [(ngModel)]="searchStr">
+  <i class="material-icons search-icon" (click)="onSearch()">search</i>
 </form>
