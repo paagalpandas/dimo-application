@@ -56,8 +56,6 @@ public class UserServiceImpl implements UserService {
         userEntity.setLastName(userDTO.getLastName());
         userEntity.setPassword(generateHashPassword(userDTO.getPassword()));
         userEntity.setEmail(userDTO.getEmail());
-        System.out.println(this.userRepository.save(userEntity).getId());
-
         return this.userRepository.save(userEntity).getId().toString();
     }
 
