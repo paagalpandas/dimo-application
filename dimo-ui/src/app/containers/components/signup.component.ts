@@ -65,7 +65,7 @@ export class SignUpComponent implements ErrorStateMatcher,OnInit{
 
     }
 
-    this.http.post("http://localhost:5000/api/users/register",(user)).subscribe(data=>{
+    this.http.post("http://dimoapp-env.usymxppnt2.ap-south-1.elasticbeanstalk.com/api/users/register",(user)).subscribe(data=>{
       let response = data as LoginResponseDTO;
       this.profileService.setToken(response.token);
     });
