@@ -39,4 +39,13 @@ public class MovieRepositoryTest {
         assertEquals(1455, resultList.size());
     }
 
+
+
+    @Test
+    public void testfindAll(){
+
+        List<Movie> resultList = movieRepository.findAll();
+        assert(resultList.size()==4800);
+
+    }
 }

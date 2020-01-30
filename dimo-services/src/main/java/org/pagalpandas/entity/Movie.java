@@ -4,6 +4,7 @@ import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.Id;
+import java.util.Comparator;
 import java.util.List;
 
 @Document(collection = "movies")
@@ -23,6 +24,7 @@ public class Movie {
     private String original_language;
     private String overview;
 
+    private float popularity;
 
     public Movie(int movieId, String title, String tagline){
         this.movieId = movieId;
@@ -92,6 +94,10 @@ public class Movie {
 
     public ObjectId getId() {
         return id;
+    }
+
+    public float getPopularity() {
+        return popularity;
     }
 
     @Override

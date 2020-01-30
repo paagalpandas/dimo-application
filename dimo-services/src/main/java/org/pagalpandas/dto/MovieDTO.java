@@ -16,6 +16,12 @@ public class MovieDTO implements Serializable {
    private String name;//temporary placeholder because of UI
    private String thumbNail;//temporary placeholder because of UI
 
+    public void setPopularity(float popularity) {
+        this.popularity = popularity;
+    }
+
+    private float popularity;
+
     public String getPoster() {
         return poster;
     }
@@ -70,5 +76,9 @@ public class MovieDTO implements Serializable {
 
     public void setDescription(String description) {
         this.description=description;
+    }
+
+    public float getPopularity() {
+        return popularity;
     }
 }

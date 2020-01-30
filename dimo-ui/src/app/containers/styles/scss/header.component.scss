@@ -1,0 +1,17 @@
+.dimo-header{
+  height: 60px;
+      background: black;
+      padding: 5px 15px;
+  color : white;
+
+  .logo {
+    display : inline-block;
+    width : 40%;
+  }
+
+  .search{
+  text-align : right;
+  display : inline-block;
+    width : 60%;
+  }
+}

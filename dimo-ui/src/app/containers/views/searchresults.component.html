@@ -2,9 +2,9 @@
   <div class="category-container">
     <div>
       <mat-card class="custom-card" *ngFor="let movie of movies">
-        <mat-card-title>{{movie.name}}</mat-card-title>
-        <mat-card-subtitle>{{movie.description}}</mat-card-subtitle>
-        <img mat-card-image [attr.src]="movie.thumbNail">
+        <mat-card-title>{{movie.title}}</mat-card-title>
+        <mat-card-subtitle>{{movie.tagline}}</mat-card-subtitle>
+        <img mat-card-image [attr.src]="movie.poster">
       </mat-card>
     </div>
   </div>
