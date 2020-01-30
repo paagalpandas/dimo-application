@@ -17,7 +17,6 @@ public interface MovieRepository extends MongoRepository<Movie, Long> {
     List<Movie> findByKeywordsNameIgnoreCaseContaining(String keyword);
     Movie getMovieById(ObjectId id);
     List<Movie> findByGenresName(String name, Pageable page);
-}
 
     @Override
     List<Movie> findAll();

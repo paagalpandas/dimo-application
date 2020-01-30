@@ -1,6 +1,7 @@
 package org.pagalpandas.service.impl;
 
 import org.bson.types.ObjectId;
+import org.pagalpandas.dto.MovieDTO;
 import org.pagalpandas.dto.MovieDetailsDTO;
 import org.pagalpandas.entity.Movie;
 import org.pagalpandas.repo.MovieRepository;
