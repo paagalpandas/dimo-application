@@ -28,7 +28,7 @@ export class LoginComponent {
       passwordHash: form.value.password
     };
 
-    this.http.post("http://localhost:5000/api/users/login", credentials)
+    this.http.post("http://dimoapp-env.usymxppnt2.ap-south-1.elasticbeanstalk.com/api/users/login", credentials)
       .subscribe(data => {
         let response = data as LoginResponseDTO;
         this.profileService.setToken(response.token);
