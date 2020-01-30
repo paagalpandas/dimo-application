@@ -9,8 +9,7 @@ import org.pagalpandas.util.MovieEntityDTOConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class SearchServiceImpl implements SearchService {
@@ -26,8 +25,11 @@ public class SearchServiceImpl implements SearchService {
 
         List<Movie> movies=movieRepository.findByTitleIgnoreCaseContaining(normalisedTrimmedString);
         List<Movie> moviesBasedOnKeyword = movieRepository.findByKeywordsNameIgnoreCaseContaining(normalisedTrimmedString);
+        Set<Movie> uniqueMovies =new LinkedHashSet<>();
 
-        movies.addAll(moviesBasedOnKeyword);
+        uniqueMovies.addAll(movies);
+        uniqueMovies.addAll(moviesBasedOnKeyword);
+        movies.addAll(uniqueMovies);
 
         List<MovieDTO> movieDTOS = new ArrayList<>();
 
