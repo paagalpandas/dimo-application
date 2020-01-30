@@ -20,7 +20,7 @@ export class SearchboxComponent {
     header = header.append('Authorization', 'Bearer ' + this.profileService.getToken());
     let params = new HttpParams().set('searchString', searchString);
 
-    this.http.get("http://localhost:5000/api/search", { headers: header, params: params })
+    this.http.get("/api/search", { headers: header, params: params })
       .subscribe(data => {
         let movies = data as Array<IMovieData>;
         this.router.navigate(["searchresults"]);
