@@ -25,7 +25,7 @@ public class UserController {
     }
 
     @PostMapping("register")
-    public long register(@RequestBody UserDTO userDTO) throws UserAlreadyExistsException {
+    public long register(@RequestBody UserDTO userDTO) throws Exception {
         return this.service.register(userDTO);
 
     }

@@ -9,5 +9,5 @@ import org.pagalpandas.exceptions.UserAlreadyExistsException;
 public interface UserService {
     public LoginResponseDTO login(CredentialsDTO creds) throws UnauthorizedException;
 
-    long register(UserDTO userDTO) throws UserAlreadyExistsException;
+    long register(UserDTO userDTO) throws Exception;
 }

@@ -48,11 +48,13 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public long register(UserDTO userDTO) throws UserAlreadyExistsException {
+    public long register(UserDTO userDTO) throws Exception {
         User userEntity= new User();
         if(checkExistingUser(userDTO.getEmail())){
             throw new UserAlreadyExistsException("User Already Exists");
         }
+        userEntity.setFirstName(userDTO.getFirstName());
+        userEntity.setLastName(userDTO.getLastName());
         userEntity.setPassword(generateHashPassword(userDTO.getPassword()));
         userEntity.setEmail(userDTO.getEmail());
         return this.userRepository.save(userEntity).getId();
@@ -64,20 +66,16 @@ public class UserServiceImpl implements UserService {
     }
 
 
-    private String generateHashPassword(String password){
+    private String generateHashPassword(String password)throws Exception{
 
-       try{
+
             Mac sha256_HMAC = Mac.getInstance("HmacSHA256");
             SecretKeySpec secret_key = new SecretKeySpec(SECRET_KEY.getBytes(), "HmacSHA256");
             sha256_HMAC.init(secret_key);
 
             String hash = Base64.encodeBase64String(sha256_HMAC.doFinal(password.getBytes()));
             return hash;
-        }
-        catch (Exception e){
-            System.out.println("Error");
-        }
-   return null;
+
     }
 
 

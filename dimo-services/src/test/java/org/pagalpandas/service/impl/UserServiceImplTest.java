@@ -94,7 +94,7 @@ class UserServiceImplTest {
     }*/
 
     @Test
-    public void testNewUser() throws UserAlreadyExistsException {
+    public void testNewUser() throws Exception {
         String emailId="nitikathareja@gmail.com";
         when(userRepository.findByEmail(emailId)).thenReturn(null);
         when(userRepository.save(Mockito.any(User.class))).thenReturn(getDummyUser());
