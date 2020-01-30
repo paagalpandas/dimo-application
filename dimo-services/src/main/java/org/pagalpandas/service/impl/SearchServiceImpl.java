@@ -23,12 +23,14 @@ public class SearchServiceImpl implements SearchService {
 
         String normalisedTrimmedString = StringUtils.normalizeSpace(searchString).trim();
 
-        List<Movie> movies=movieRepository.findByTitleIgnoreCaseContaining(normalisedTrimmedString);
+        List<Movie> moviesBasedOnTitle=movieRepository.findByTitleIgnoreCaseContaining(normalisedTrimmedString);
         List<Movie> moviesBasedOnKeyword = movieRepository.findByKeywordsNameIgnoreCaseContaining(normalisedTrimmedString);
+        List<Movie> movies = new ArrayList<>();
         Set<Movie> uniqueMovies =new LinkedHashSet<>();
 
-        uniqueMovies.addAll(movies);
+        uniqueMovies.addAll(moviesBasedOnTitle);
         uniqueMovies.addAll(moviesBasedOnKeyword);
+
         movies.addAll(uniqueMovies);
 
         List<MovieDTO> movieDTOS = new ArrayList<>();

@@ -16,8 +16,8 @@ public class MovieRepositoryTest {
     MovieRepository movieRepository;
     @Test
     public void testSearchContainsInKeyword(){
-        List<Movie> resultList = movieRepository.findByKeywordsNameIgnoreCaseContaining("Marvel");
-        assertEquals(16, resultList.size());
+        List<Movie> resultList = movieRepository.findByKeywordsNameIgnoreCaseContaining("Marvel comic");
+        assertEquals(34, resultList.size());
     }
     @Test
     public void testSearchContainsInTitle(){
