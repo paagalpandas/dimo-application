@@ -3,11 +3,24 @@
 }
 
 
+.login-container{
+  height : 30vh;
+
+  .example-full-width{
+    width: 90%;
+    padding: 20px;
+  }
+
+  .login-btn{
+    position : absolute;
+    bottom : 20px;
+    margin-left: 20px;
+  }
+}
+
+
 .btn-block:hover, .btn-block:focus, .btn-block.focus, .btn-block:active, .btn-block.active, .open > .dropdown-toggle.btn-block {
-  color:
-    #fff;
-  background-color:
-    #449d44;
-  border-color:
-    #398439;
+  color : #fff;
+  background-color : #449d44;
+  border-color : #398439;
 }
