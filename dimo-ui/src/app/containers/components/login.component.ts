@@ -25,7 +25,7 @@ export class LoginComponent {
 
     var credentials = {
       email: form.value.email,
-      password: form.value.password
+      passwordHash: form.value.password
     };
 
     this.http.post("http://localhost:5000/api/users/login", credentials)
