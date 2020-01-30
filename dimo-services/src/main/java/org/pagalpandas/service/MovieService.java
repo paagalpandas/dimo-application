@@ -1,13 +1,13 @@
 package org.pagalpandas.service;
 
 import org.bson.types.ObjectId;
-import org.pagalpandas.dto.MovieDTO;
+import org.pagalpandas.dto.MovieDetailsDTO;
 import org.springframework.stereotype.Service;
 
 
 @Service
 public interface MovieService {
 
-	public MovieDTO getMovie(ObjectId id);
+	public MovieDetailsDTO getMovie(ObjectId id);
 
 }

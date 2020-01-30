@@ -18,6 +18,11 @@ public class Movie {
     private List<Keyword> keywords;
     private String tagline;
     private String Poster;
+    private List<Genre> genres;
+    private String release_date;
+    private String original_language;
+    private String overview;
+
 
     public Movie(int movieId, String title, String tagline){
         this.movieId = movieId;
@@ -35,6 +40,38 @@ public class Movie {
 
     public void setKeywords(List<Keyword> keywords) {
         this.keywords = keywords;
+    }
+
+    public List<Genre> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(List<Genre> genres) {
+        this.genres = genres;
+    }
+
+    public String getRelease_date() {
+        return release_date;
+    }
+
+    public String getOriginal_language() {
+        return original_language;
+    }
+
+    public String getOverview() {
+        return overview;
+    }
+
+    public void setOriginal_language(String original_language) {
+        this.original_language = original_language;
+    }
+
+    public void setRelease_date(String release_date) {
+        this.release_date = release_date;
+    }
+
+    public void setOverview(String overview) {
+        this.overview = overview;
     }
 
     public String getTitle() {

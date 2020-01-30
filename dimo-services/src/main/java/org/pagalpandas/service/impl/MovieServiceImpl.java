@@ -1,7 +1,7 @@
 package org.pagalpandas.service.impl;
 
 import org.bson.types.ObjectId;
-import org.pagalpandas.dto.MovieDTO;
+import org.pagalpandas.dto.MovieDetailsDTO;
 import org.pagalpandas.entity.Movie;
 import org.pagalpandas.repo.MovieRepository;
 import org.pagalpandas.service.MovieService;
@@ -19,10 +19,10 @@ public class MovieServiceImpl implements MovieService {
 	MovieEntityDTOConverter movieEntityDTOConverter;
 
 	@Override
-	public MovieDTO getMovie(ObjectId id) {
+	public MovieDetailsDTO getMovie(ObjectId id) {
 		Movie movie=movieRepository.getMovieById(id);
-		MovieDTO movieDTO = movieEntityDTOConverter.convertEntityToDTO(movie);
-		return movieDTO;
+		MovieDetailsDTO movieDetailsDTO = movieEntityDTOConverter.convertEntityToMovieDetailDTO(movie);
+		return movieDetailsDTO;
 		
 	}
 }
