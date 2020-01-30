@@ -5,7 +5,6 @@ import org.apache.tomcat.util.codec.binary.Base64;
 import org.pagalpandas.dto.CredentialsDTO;
 import org.pagalpandas.dto.LoginResponseDTO;
 import org.pagalpandas.dto.UserDTO;
-import org.pagalpandas.entity.Role;
 import org.pagalpandas.entity.User;
 import org.pagalpandas.exceptions.UnauthorizedException;
 import org.pagalpandas.exceptions.UserAlreadyExistsException;
@@ -18,7 +17,6 @@ import org.springframework.stereotype.Service;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.stream.Collectors;
 
@@ -33,7 +31,7 @@ public class UserServiceImpl implements UserService {
 
     public LoginResponseDTO login(CredentialsDTO creds) throws UnauthorizedException {
 
-        if (creds == null || creds.email == null || creds.passwordHash == null) throw new IllegalArgumentException();
+        if(creds == null || creds.email == null || creds.passwordHash == null) throw new IllegalArgumentException();
 
         User dbUser = userRepository.getUserByEmailAndPassword(creds.email,creds.passwordHash);
 
@@ -51,8 +49,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public long register(UserDTO userDTO) throws UserAlreadyExistsException {
-        User userEntity = new User();
-        if (checkExistingUser(userDTO.getEmail())) {
+        User userEntity= new User();
+        if(checkExistingUser(userDTO.getEmail())){
             throw new UserAlreadyExistsException("User Already Exists");
         }
         userEntity.setPassword(generateHashPassword(userDTO.getPassword()));
@@ -60,26 +58,28 @@ public class UserServiceImpl implements UserService {
         return this.userRepository.save(userEntity).getId();
     }
 
-    private boolean checkExistingUser(String emailId) {
-        User user = userRepository.findByEmail(emailId);
-        return user != null;
+    private boolean checkExistingUser(String emailId){
+       User user= userRepository.findByEmail(emailId);
+       return user!=null;
     }
 
 
-    private String generateHashPassword(String password) {
+    private String generateHashPassword(String password){
 
-        try {
+       try{
             Mac sha256_HMAC = Mac.getInstance("HmacSHA256");
             SecretKeySpec secret_key = new SecretKeySpec(SECRET_KEY.getBytes(), "HmacSHA256");
             sha256_HMAC.init(secret_key);
 
             String hash = Base64.encodeBase64String(sha256_HMAC.doFinal(password.getBytes()));
             return hash;
-        } catch (Exception e) {
+        }
+        catch (Exception e){
             System.out.println("Error");
         }
-        return null;
+   return null;
     }
+
 
 
     private String generateToken(User user) {
