@@ -4,8 +4,9 @@ import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.Id;
+import java.util.Comparator;
 
-@Document(collection = "image_test")
+@Document(collection = "movies")
 public class Movie {
 
     public Movie(){}
@@ -17,6 +18,7 @@ public class Movie {
     //private String keywords;
     private String tagline;
     private String Poster;
+    private float popularity;
 
     public Movie(int movieId, String title, String tagline){
         this.movieId = movieId;
@@ -49,6 +51,10 @@ public class Movie {
         return id;
     }
 
+    public float getPopularity() {
+        return popularity;
+    }
+
     @Override
     public int hashCode() {
         int result = title.hashCode();
@@ -62,4 +68,6 @@ public class Movie {
         Movie movie = (Movie)obj;
         return title.equalsIgnoreCase(movie.title);
     }
+
+
 }

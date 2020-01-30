@@ -3,6 +3,8 @@ package org.pagalpandas.controller;
 import org.pagalpandas.dto.CategoryDTO;
 import org.pagalpandas.dto.MovieDTO;
 import org.pagalpandas.exceptions.UnauthorizedException;
+import org.pagalpandas.service.MovieService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +17,9 @@ import java.util.List;
 @RequestMapping("/api/dashboard")
 public class DashboardController {
 
+    @Autowired
+    MovieService movieService;
+
     @GetMapping("")
     public List<CategoryDTO> get(Authentication auth) throws UnauthorizedException {
 
@@ -22,7 +27,25 @@ public class DashboardController {
 //            throw new UnauthorizedException();
 //        }
 
-        return new ArrayList<>();
+        List<CategoryDTO> categoryDTOS = new ArrayList<>();
+        String[] cats = {"Trending", "French", "Walt Disney"};
+
+        return getDashboardData();
+
+    }
+
+    private List<CategoryDTO> getDashboardData() {
+        List<CategoryDTO> categoryDTOS = new ArrayList<>();
+        String[] cats = {"Trending", "French", "Walt Disney"};
+        List<MovieDTO> movieDTOS = movieService.getTopNTrendingMovies(5);
+
+        for (String c : cats) {
+            CategoryDTO categoryDTO = new CategoryDTO();
+            categoryDTO.category = c;
+            categoryDTO.movies = movieDTOS;
+            categoryDTOS.add(categoryDTO);
+        }
+        return categoryDTOS;
     }
 
     private List<CategoryDTO> dummyData() {

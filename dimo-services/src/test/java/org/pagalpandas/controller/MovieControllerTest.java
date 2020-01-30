@@ -20,7 +20,7 @@ public class MovieControllerTest {
         ResponseEntity<ResponseDTO> responseEntity= movieController.getMovies("5e2fe41d2b023a0de86b0a21");
         MovieDTO movieDTO= (MovieDTO)responseEntity.getBody().getData();
         assertEquals("The Good Dinosaur",movieDTO.getName());
-        assertEquals("https://dummyimage.com/300x400/000000/15ff00&text=No+poster+found",movieDTO.getThumbNail());
+        assertEquals("https://m.media-amazon.com/images/M/MV5BMTc5MTg2NjQ4MV5BMl5BanBnXkFtZTgwNzcxOTY5NjE@._V1_SX300.jpg",movieDTO.getThumbNail());
         assertEquals("Little Arms With Big Attitude",movieDTO.getDescription());
     }
 
