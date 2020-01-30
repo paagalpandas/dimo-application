@@ -5,6 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.Id;
 import java.util.Comparator;
+import java.util.List;
 
 @Document(collection = "movies")
 public class Movie {
@@ -15,7 +16,7 @@ public class Movie {
     private ObjectId id;
     private int movieId;
     private String title;
-    //private String keywords;
+    private List<Keyword> keywords;
     private String tagline;
     private String Poster;
     private float popularity;
@@ -30,6 +31,13 @@ public class Movie {
         return movieId;
     }
 
+    public List<Keyword> getKeywords() {
+        return keywords;
+    }
+
+    public void setKeywords(List<Keyword> keywords) {
+        this.keywords = keywords;
+    }
 
     public String getTitle() {
         return title;
@@ -68,6 +76,4 @@ public class Movie {
         Movie movie = (Movie)obj;
         return title.equalsIgnoreCase(movie.title);
     }
-
-
 }

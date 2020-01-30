@@ -13,6 +13,7 @@ import java.util.List;
 public interface MovieRepository extends MongoRepository<Movie, Long> {
 
     List<Movie> findByTitleIgnoreCaseContaining(String titleSearchString);
+    List<Movie> findByKeywordsNameIgnoreCaseContaining(String keyword);
     Movie getMovieById(ObjectId id);
 
     @Override

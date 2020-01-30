@@ -1,0 +1,22 @@
+.searchbox-container{
+  .search-box{
+       width: 75%;
+       position: relative;
+       background: white;
+       height: 40px;
+       border: 1px solid lightgray;
+       border-radius: 4px;
+       margin-right: 12px;
+        padding-left : 5px;
+       font-size : 16px;
+  }
+
+  .search-icon{
+    color: black;
+        font-size: 30px;
+        position: absolute;
+        right: 34px;
+        top: 20px;
+        cursor: pointer;
+  }
+}

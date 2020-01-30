@@ -15,12 +15,15 @@ public class MovieRepositoryTest {
     @Autowired
     MovieRepository movieRepository;
     @Test
+    public void testSearchContainsInKeyword(){
+        List<Movie> resultList = movieRepository.findByKeywordsNameIgnoreCaseContaining("Marvel comic");
+        assertEquals(34, resultList.size());
+    }
+    @Test
     public void testSearchContainsInTitle(){
-
         List<Movie> resultList = movieRepository.findByTitleIgnoreCaseContaining("The Good Dinosaur");
         assertEquals("The Good Dinosaur", ((Movie)resultList.get(0)).getTitle());
     }
-
     @Test
     public void testSearchDoesNotContainInTitle(){
         List<Movie> resultList = movieRepository.findByTitleIgnoreCaseContaining("1915");
@@ -41,5 +44,6 @@ public class MovieRepositoryTest {
 
         List<Movie> resultList = movieRepository.findAll();
         assert(resultList.size()==4800);
+
     }
 }
