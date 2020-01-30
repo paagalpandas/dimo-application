@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.pagalpandas.dto.ResponseDTO;
 import org.pagalpandas.exceptions.ErrorResponse;
 import org.pagalpandas.exceptions.ResourceNotFoundException;
+import org.pagalpandas.exceptions.UserAlreadyExistsException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -59,6 +60,23 @@ public class DimoControllerAdvice {
         return new ResponseEntity<>(responseDTO, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(UserAlreadyExistsException.class)
+    public @ResponseBody
+    ResponseEntity<ResponseDTO> handleException(final UserAlreadyExistsException exception,
+                                                final HttpServletRequest request) {
+
+        LOGGER.error("Exception occured in system due to {}", exception.getCause());
+
+
+        ResponseDTO responseDTO = new ResponseDTO();
+        List<ErrorResponse> errorResponseList=new ArrayList<>();
+        errorResponseList.add(new ErrorResponse(null, exception.getMessage()));
+        responseDTO.setErrorResponse(errorResponseList);
+
+
+        return new ResponseEntity<>(responseDTO, HttpStatus.BAD_REQUEST);
+    }
+
     @ExceptionHandler(Exception.class)
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
     public @ResponseBody
@@ -70,7 +88,7 @@ public class DimoControllerAdvice {
 
         ResponseDTO responseDTO = new ResponseDTO();
         List<ErrorResponse> errorResponseList=new ArrayList<>();
-		errorResponseList.add(new ErrorResponse(null, "Internal Server Error"));
+		errorResponseList.add(new ErrorResponse(null, exception.getMessage()));
         responseDTO.setErrorResponse(errorResponseList);
 
 

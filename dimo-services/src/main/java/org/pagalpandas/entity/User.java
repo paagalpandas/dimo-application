@@ -1,6 +1,7 @@
 package org.pagalpandas.entity;
 
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -10,7 +11,7 @@ import java.util.List;
 public class User {
 
     @Id
-    private long id;
+    private ObjectId id;
     private String email;
     private String firstName;
     private String lastName;
@@ -27,11 +28,11 @@ public class User {
         this.roles = roles;
     }
 
-    public long getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 

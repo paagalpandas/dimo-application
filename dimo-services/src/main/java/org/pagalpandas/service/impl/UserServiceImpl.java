@@ -10,7 +10,6 @@ import org.pagalpandas.exceptions.UnauthorizedException;
 import org.pagalpandas.exceptions.UserAlreadyExistsException;
 import org.pagalpandas.repo.UserRepository;
 import org.pagalpandas.service.UserService;
-import org.pagalpandas.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
@@ -48,7 +47,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public long register(UserDTO userDTO) throws Exception {
+    public String register(UserDTO userDTO) throws Exception {
         User userEntity= new User();
         if(checkExistingUser(userDTO.getEmail())){
             throw new UserAlreadyExistsException("User Already Exists");
@@ -57,7 +56,9 @@ public class UserServiceImpl implements UserService {
         userEntity.setLastName(userDTO.getLastName());
         userEntity.setPassword(generateHashPassword(userDTO.getPassword()));
         userEntity.setEmail(userDTO.getEmail());
-        return this.userRepository.save(userEntity).getId();
+        System.out.println(this.userRepository.save(userEntity).getId());
+
+        return this.userRepository.save(userEntity).getId().toString();
     }
 
     private boolean checkExistingUser(String emailId){
