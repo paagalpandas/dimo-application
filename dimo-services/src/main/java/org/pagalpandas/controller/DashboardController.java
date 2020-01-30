@@ -31,9 +31,9 @@ public class DashboardController {
         List<MovieDTO> movieDTOS = new ArrayList<>();
 
         MovieDTO movieDTO = new MovieDTO();
-        movieDTO.name = "Interstellar";
-        movieDTO.description = "About movie...";
-        movieDTO.thumbNail = "https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWFmMjktY2FiMmZkNWIyODZiXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg";
+        movieDTO.setName("Interstellar");
+        movieDTO.setDescription("About movie...");
+        movieDTO.setThumbNail("https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWFmMjktY2FiMmZkNWIyODZiXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg");
 
         movieDTOS.add(movieDTO);
         movieDTOS.add(movieDTO);

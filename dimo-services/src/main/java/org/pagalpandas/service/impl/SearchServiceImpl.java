@@ -1,5 +1,6 @@
 package org.pagalpandas.service.impl;
 
+import org.apache.commons.lang3.StringUtils;
 import org.pagalpandas.entity.Movie;
 import org.pagalpandas.repo.MovieRepository;
 import org.pagalpandas.service.SearchService;
@@ -14,8 +15,11 @@ public class SearchServiceImpl implements SearchService {
     @Autowired
     MovieRepository movieRepository;
 
-    public List<Movie> searchByKeyWord(String searchString) {
-        return movieRepository.findByTitleIgnoreCaseContainingOrKeywordsIgnoreCaseContaining(searchString, searchString);
+    public List<Movie> searchByKeyWord(String searchString) throws Exception {
+
+        String normalisedTrimmedString = StringUtils.normalizeSpace(searchString).trim();
+
+        return movieRepository.findByTitleIgnoreCaseContaining(normalisedTrimmedString);
 
    }
     public String echo(String s) throws Exception {
