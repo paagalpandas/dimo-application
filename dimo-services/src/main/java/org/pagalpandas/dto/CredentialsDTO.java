@@ -4,10 +4,10 @@ public class CredentialsDTO {
     public String email;
 
     //TODO: Change this later to a hash.
-    public String passwordHash;
+    public String password;
 
-    public CredentialsDTO(String email, String passwordHash) {
+    public CredentialsDTO(String email, String password) {
         this.email = email;
-        this.passwordHash = passwordHash;
+        this.password = password;
     }
 }

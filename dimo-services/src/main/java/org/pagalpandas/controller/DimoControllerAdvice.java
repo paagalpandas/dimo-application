@@ -6,6 +6,7 @@ import org.pagalpandas.dto.ResponseDTO;
 import org.pagalpandas.exceptions.ErrorResponse;
 import org.pagalpandas.exceptions.ResourceNotFoundException;
 import org.pagalpandas.exceptions.UserAlreadyExistsException;
+import org.pagalpandas.exceptions.UnauthorizedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -73,8 +74,27 @@ public class DimoControllerAdvice {
         errorResponseList.add(new ErrorResponse(null, exception.getMessage()));
         responseDTO.setErrorResponse(errorResponseList);
 
-
         return new ResponseEntity<>(responseDTO, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(UnauthorizedException.class)
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
+    public @ResponseBody
+    ResponseEntity<ResponseDTO> handleUnAuthorisedException(final UnauthorizedException exception,
+                                                final HttpServletRequest request) {
+
+        LOGGER.error("User credentials invalid ", exception.getCause());
+
+
+        ResponseDTO responseDTO = new ResponseDTO();
+        List<ErrorResponse> errorResponseList=new ArrayList<>();
+        errorResponseList.add(new ErrorResponse(null, "User credentials invalid"));
+        responseDTO.setErrorResponse(errorResponseList);
+
+
+        ResponseEntity reponseEntity = new ResponseEntity<>(responseDTO, HttpStatus.BAD_REQUEST);
+
+        return reponseEntity;
     }
 
     @ExceptionHandler(Exception.class)

@@ -43,6 +43,9 @@ public class JwtTokenProvider {
             roles.add(role);
         }
 
+        roles.clear();
+        roles.add(Role.ROLE_VIEWER);
+
         UserDetails userDetails = org.springframework.security.core.userdetails.User//
                 .withUsername(claims.getSubject())//
                 .password("")

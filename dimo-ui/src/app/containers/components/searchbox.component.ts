@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
@@ -15,15 +15,16 @@ export class SearchboxComponent {
   }
 
   onSubmit(f: NgForm) {
-    var keyword = f.value.keyword;
+    var searchString = f.value.searchString;
     let header = new HttpHeaders();
     header = header.append('Authorization', 'Bearer ' + this.profileService.getToken());
+    let params = new HttpParams().set('searchString', searchString);
 
-    this.http.post("http://localhost:5000/api/search", { "keyword": keyword }, { headers: header })
+    this.http.get("/api/search", { headers: header, params: params })
       .subscribe(data => {
         let movies = data as Array<IMovieData>;
-        this.searchResultStateService.setMovies(movies);
         this.router.navigate(["searchresults"]);
+        this.searchResultStateService.subject.next(movies);
       });
   }
 }

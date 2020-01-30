@@ -18,11 +18,11 @@ public class DashboardController {
     @GetMapping("")
     public List<CategoryDTO> get(Authentication auth) throws UnauthorizedException {
 
-        if (!auth.getName().equals("foo@bar.com")) {
-            throw new UnauthorizedException();
-        }
+//        if (!auth.getName().equals("foo@bar.com")) {
+//            throw new UnauthorizedException();
+//        }
 
-        return dummyData();
+        return new ArrayList<>();
     }
 
     private List<CategoryDTO> dummyData() {

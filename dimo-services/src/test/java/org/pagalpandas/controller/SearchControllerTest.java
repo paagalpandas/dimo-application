@@ -7,8 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.pagalpandas.entity.Movie;
-import org.pagalpandas.service.SearchService;
+import org.pagalpandas.dto.MovieDTO;
 import org.pagalpandas.service.impl.SearchServiceImpl;
 
 import java.util.ArrayList;
@@ -35,10 +34,10 @@ public class SearchControllerTest {
     @Test
     public void testSearchSingleWordInTitleSuccess() throws Exception {
 
-        List<Movie> expectedSearchResult = getExpectedSearchResult();
+        List<MovieDTO> expectedSearchResult = getExpectedSearchResult();
        when(searchService.searchByKeyWord("1917")).thenReturn(expectedSearchResult);
 
-        List<Movie> searchResult = searchController.Search("1917");
+        List<MovieDTO> searchResult = searchController.Search("1917");
         assertEquals(expectedSearchResult, searchResult);
 
     }
@@ -46,32 +45,42 @@ public class SearchControllerTest {
     @Test
     public void testSearchSingleWordInTitleNotFound() throws Exception {
 
-        List<Movie> expectedSearchResult = getExpectedSearchResult();
+        List<MovieDTO> expectedSearchResult = getExpectedSearchResult();
         when(searchService.searchByKeyWord("1917")).thenReturn(expectedSearchResult);
 
-        List<Movie> searchResult = searchController.Search("Mission Impossible");
+        List<MovieDTO> searchResult = searchController.Search("Mission Impossible");
         assertEquals(0, searchResult.size() );
     }
 
     @Test
     public void testEmptySearchString() throws Exception {
 
-        List<Movie> searchResult = searchController.Search("");
+        List<MovieDTO> searchResult = searchController.Search("");
         verify(searchService, never()).searchByKeyWord(anyString());
     }
 
     @Test
     public void testNullSearchString() throws Exception {
 
-        List<Movie> searchResult = searchController.Search(null);
+        List<MovieDTO> searchResult = searchController.Search(null);
         verify(searchService, never()).searchByKeyWord(anyString());
     }
 
-    public List<Movie> getExpectedSearchResult(){
+    public List<MovieDTO> getExpectedSearchResult(){
 
-        List<Movie> searchResult = new ArrayList<Movie>();
-        searchResult.add(new Movie(1, "Once upon a time in 1917", "A peaceful story about war"));
-        searchResult.add(new Movie(1, "1917", "A modern story about war"));
+        List<MovieDTO> searchResult = new ArrayList<MovieDTO>();
+
+        MovieDTO movieDTO1 = new MovieDTO();
+        movieDTO1.setName("Once upon a time in 1917");
+        movieDTO1.setTagline("A peaceful story about war");
+
+        MovieDTO movieDTO2 = new MovieDTO();
+        movieDTO2.setName("1917");
+        movieDTO2.setTagline("A modern story about war");
+
+        searchResult.add(movieDTO1);
+        searchResult.add(movieDTO2);
+
         return searchResult;
     }
 

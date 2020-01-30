@@ -3,6 +3,8 @@ package org.pagalpandas.service.impl;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import org.bson.types.ObjectId;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -70,14 +72,14 @@ class UserServiceImplTest {
         assertEquals("Bar", claims.get("LastName"));
     }
 
-    /*@Test
+    @Test
     public void loginFailed() throws UnauthorizedException {
         when(userRepository.getUserByEmailAndPassword(any(), any())).thenReturn(null);
         CredentialsDTO dto = new CredentialsDTO("foo@bar.com", "passwordHash");
         assertThrows(UnauthorizedException.class, () -> {
             service.login(dto);
         });
-    }*/
+    }
 
     private Claims parseToken(String token) {
         return Jwts.parser()

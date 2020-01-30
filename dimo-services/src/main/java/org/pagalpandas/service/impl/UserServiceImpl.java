@@ -5,10 +5,12 @@ import org.apache.tomcat.util.codec.binary.Base64;
 import org.pagalpandas.dto.CredentialsDTO;
 import org.pagalpandas.dto.LoginResponseDTO;
 import org.pagalpandas.dto.UserDTO;
+import org.pagalpandas.entity.Role;
 import org.pagalpandas.entity.User;
 import org.pagalpandas.exceptions.UnauthorizedException;
 import org.pagalpandas.exceptions.UserAlreadyExistsException;
 import org.pagalpandas.repo.UserRepository;
+import org.pagalpandas.security.HashUtility;
 import org.pagalpandas.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -30,9 +32,9 @@ public class UserServiceImpl implements UserService {
 
     public LoginResponseDTO login(CredentialsDTO creds) throws UnauthorizedException {
 
-        if(creds == null || creds.email == null || creds.passwordHash == null) throw new IllegalArgumentException();
+        if(creds == null || creds.email == null || creds.password == null) throw new IllegalArgumentException();
 
-        User dbUser = userRepository.getUserByEmailAndPassword(creds.email,creds.passwordHash);
+        User dbUser = userRepository.getUserByEmailAndPassword(creds.email, HashUtility.generateHash(creds.password));
 
         if(dbUser == null) throw new UnauthorizedException();
 
@@ -53,8 +55,8 @@ public class UserServiceImpl implements UserService {
             throw new UserAlreadyExistsException("User Already Exists");
         }
         userEntity.setFirstName(userDTO.getFirstName());
+        userEntity.setPassword(HashUtility.generateHash(userDTO.getPassword()));
         userEntity.setLastName(userDTO.getLastName());
-        userEntity.setPassword(generateHashPassword(userDTO.getPassword()));
         userEntity.setEmail(userDTO.getEmail());
         System.out.println(this.userRepository.save(userEntity).getId());
 
@@ -67,30 +69,17 @@ public class UserServiceImpl implements UserService {
     }
 
 
-    private String generateHashPassword(String password)throws Exception{
-
-
-            Mac sha256_HMAC = Mac.getInstance("HmacSHA256");
-            SecretKeySpec secret_key = new SecretKeySpec(SECRET_KEY.getBytes(), "HmacSHA256");
-            sha256_HMAC.init(secret_key);
-
-            String hash = Base64.encodeBase64String(sha256_HMAC.doFinal(password.getBytes()));
-            return hash;
-
-    }
-
-
 
     private String generateToken(User user) {
-        final String authorities = user.roles.stream()
-                .map(GrantedAuthority::getAuthority)
-                .collect(Collectors.joining(","));
+//        final String authorities = user.roles.stream()
+//                .map(GrantedAuthority::getAuthority)
+//                .collect(Collectors.joining(","));
 
         String token = JWT.create()
                 .withClaim("FirstName", user.getFirstName())
                 .withClaim("LastName", user.getLastName())
                 .withSubject(user.getEmail())
-                .withClaim(AUTHORITIES, authorities)
+                .withClaim(AUTHORITIES, Role.ROLE_VIEWER.name())
                 .withIssuer(ISSUER)
                 .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .sign(HMAC512(SECRET.getBytes()));
