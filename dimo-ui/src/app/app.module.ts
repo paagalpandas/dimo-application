@@ -20,6 +20,7 @@ import { SearchboxComponent } from '../app/containers/components/searchbox.compo
 import { SearchResultsComponent } from "./containers/components/searchresults.component";
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HeaderComponent } from "./containers/components/header.component";
+import {MovieDetailsComponent} from "./containers/components/moviedetails.component";
 
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
@@ -33,7 +34,8 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     SearchResultsComponent,
     EntryPointComponent,
     SignUpComponent,
-    HeaderComponent
+    HeaderComponent,
+    MovieDetailsComponent
   ],
   imports: [
     BrowserModule,
