@@ -9,13 +9,21 @@ import { ProfileService } from './services/ProfileService';
 })
 
 export class AppComponent {
-  title = 'DimoUi';
+  title = 'Dimo';
+
+  color = 'primary';
+  mode = 'indeterminate';
 
   public showHeader = false;
+  public showLoader = false;
 
   constructor(private profileService: ProfileService) {
     this.profileService.isAuthenticated.subscribe(authenticated => {
       this.showHeader = authenticated;
+    });
+
+    this.profileService.showLoader.subscribe(show => {
+      this.showLoader = show;
     });
   }
 }

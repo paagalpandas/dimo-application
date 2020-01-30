@@ -19,10 +19,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    let header = new HttpHeaders();
-    header = header.append('Authorization', 'Bearer ' + this.profileService.getToken());
-
-    this.http.get('/api/dashboard', { headers: header }).subscribe(data => {
+    this.http.get('/api/dashboard').subscribe(data => {
       this.categories = data as Array<ICategory>;
     });
   }

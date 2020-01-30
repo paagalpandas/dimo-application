@@ -1,33 +1,41 @@
-.container{
+.container {
   margin: auto;
   width: 50%;
   border: 3px solid green;
   padding: 10px;
 }
 
-.entrypoint-container{
-
+.entrypoint-container {
   width: 100%;
   display: flex;
   justify-content: center;
   height: 100vh;
 
-  .container-item{
-    .mat-tab-labels{
-      .mat-tab-label{
-        width : 50%;
+  background: url("../../../../assets/login.jpg");
+
+  .container-item {
+    .login-dimo-logo {
+      position: fixed;
+      top: 14%;
+      left: 44%;
+
+      .logo-img {
+        height: 80px;
+      }
+    }
+    .mat-tab-labels {
+      .mat-tab-label {
+        width: 50%;
       }
     }
 
     border-radius: 7px;
-        width: 500px;
-        box-shadow: 0px 10px 20px 0px rgba(50, 50, 50, 0.52);
-        border-color: #ddd;
-        border: 1px solid transparent;
-        background: aliceblue;
-        height: 38%;
-        align-self: center;
+    width: 500px;
+    box-shadow: 0px 10px 20px 0px rgba(50, 50, 50, 0.52);
+    border-color: #ddd;
+    border: 1px solid transparent;
+    background: aliceblue;
+    height: 38%;
+    align-self: center;
   }
 }
-
-

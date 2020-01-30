@@ -21,9 +21,6 @@ export class LoginComponent {
 
 
   onSubmit(form: NgForm) {
-    console.log(form.value.password);
-    console.log(form.value.email)
-
     const credentials = {
       email: form.value.email,
       password: form.value.password

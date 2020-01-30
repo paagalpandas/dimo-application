@@ -1,4 +1,5 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: "dimo-header",
@@ -6,5 +7,12 @@ import {Component} from '@angular/core';
   styleUrls: ['../styles/scss/header.component.scss']
 })
 
-export class HeaderComponent {}
+export class HeaderComponent {
+
+  constructor(private router: Router) { }
+
+  public goToDashboard() {
+    this.router.navigateByUrl('dashboard');
+  }
+}
 
