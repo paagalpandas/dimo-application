@@ -4,6 +4,7 @@ import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.Id;
+import java.util.List;
 
 @Document(collection = "image_test")
 public class Movie {
@@ -14,7 +15,7 @@ public class Movie {
     private ObjectId id;
     private int movieId;
     private String title;
-    //private String keywords;
+    private List<Keyword> keywords;
     private String tagline;
     private String Poster;
 
@@ -28,6 +29,13 @@ public class Movie {
         return movieId;
     }
 
+    public List<Keyword> getKeywords() {
+        return keywords;
+    }
+
+    public void setKeywords(List<Keyword> keywords) {
+        this.keywords = keywords;
+    }
 
     public String getTitle() {
         return title;
