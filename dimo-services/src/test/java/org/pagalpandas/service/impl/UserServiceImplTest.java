@@ -121,6 +121,7 @@ class UserServiceImplTest {
 
     private UserDTO getUserDTO(){
         UserDTO userDTO = new UserDTO();
+        userDTO.setPassword("StayHappy");
         userDTO.setEmail("nitikathareja@gmail.com");
         return userDTO;
     }
