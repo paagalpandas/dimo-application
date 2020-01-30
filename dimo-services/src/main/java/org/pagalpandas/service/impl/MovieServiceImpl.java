@@ -3,12 +3,14 @@ package org.pagalpandas.service.impl;
 import org.bson.types.ObjectId;
 import org.pagalpandas.dto.MovieDTO;
 import org.pagalpandas.entity.Movie;
-import org.pagalpandas.entity.MoviePopularityComparator;
 import org.pagalpandas.repo.MovieRepository;
 import org.pagalpandas.service.MovieService;
 
 import org.pagalpandas.util.MovieEntityDTOConverter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -41,12 +43,13 @@ public class MovieServiceImpl implements MovieService {
 
 	public List<MovieDTO> getTopNTrendingMovies(int topN){
 		if(topN<0) topN = 5;
-		List<Movie> movies = movieRepository.findAll();
-		movies.sort(new MoviePopularityComparator());
-		List<Movie> topNMovies = movies.subList(0, topN);
 
 		List<MovieDTO> movieDTOList = new ArrayList<MovieDTO>();
-		for (Movie movie:topNMovies) {
+
+		Page<Movie> moviePage = movieRepository.findAll(PageRequest.of(0, topN, Sort.by(Sort.Direction.DESC,"popularity")) );
+
+		for (Movie movie:moviePage) {
+
 			movieDTOList.add(movieEntityDTOConverter.convertEntityToDTO(movie));
 		}
 		return movieDTOList;
