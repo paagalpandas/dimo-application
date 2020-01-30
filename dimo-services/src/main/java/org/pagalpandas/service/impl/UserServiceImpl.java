@@ -2,7 +2,6 @@ package org.pagalpandas.service.impl;
 
 import com.auth0.jwt.JWT;
 import org.apache.tomcat.util.codec.binary.Base64;
-import org.bson.types.ObjectId;
 import org.pagalpandas.dto.CredentialsDTO;
 import org.pagalpandas.dto.LoginResponseDTO;
 import org.pagalpandas.dto.UserDTO;
@@ -31,8 +30,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository userRepository;
 
-
-
     public LoginResponseDTO login(CredentialsDTO creds) throws UnauthorizedException {
 
         if(creds == null || creds.email == null || creds.password == null) throw new IllegalArgumentException();
@@ -52,14 +49,18 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public ObjectId register(UserDTO userDTO) throws UserAlreadyExistsException {
+    public String register(UserDTO userDTO) throws Exception {
         User userEntity= new User();
         if(checkExistingUser(userDTO.getEmail())){
             throw new UserAlreadyExistsException("User Already Exists");
         }
+        userEntity.setFirstName(userDTO.getFirstName());
         userEntity.setPassword(HashUtility.generateHash(userDTO.getPassword()));
+        userEntity.setLastName(userDTO.getLastName());
         userEntity.setEmail(userDTO.getEmail());
-        return this.userRepository.save(userEntity).getId();
+        System.out.println(this.userRepository.save(userEntity).getId());
+
+        return this.userRepository.save(userEntity).getId().toString();
     }
 
     private boolean checkExistingUser(String emailId){

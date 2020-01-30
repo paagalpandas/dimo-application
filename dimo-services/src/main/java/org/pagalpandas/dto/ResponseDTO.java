@@ -2,9 +2,10 @@ package org.pagalpandas.dto;
 
 import org.pagalpandas.exceptions.ErrorResponse;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ResponseDTO<T> {
+public class ResponseDTO<T>  implements Serializable {
 	
 	private T data;
 	
@@ -26,4 +27,6 @@ public class ResponseDTO<T> {
 	public void setErrorResponse(List<ErrorResponse> errorResponse) {
 		this.errorResponse = errorResponse;
 	}
+
+
 }

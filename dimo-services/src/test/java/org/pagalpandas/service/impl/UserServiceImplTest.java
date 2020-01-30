@@ -37,6 +37,8 @@ class UserServiceImplTest {
     @InjectMocks
     UserServiceImpl service;
 
+    ObjectId objectId;
+
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
@@ -79,8 +81,6 @@ class UserServiceImplTest {
         });
     }
 
-
-
     private Claims parseToken(String token) {
         return Jwts.parser()
                 .setSigningKey(SECRET.getBytes())
@@ -99,39 +99,42 @@ class UserServiceImplTest {
     }*/
 
     @Test
-    public void testNewUser() throws UserAlreadyExistsException {
+    public void testNewUser() throws Exception {
         String emailId="nitikathareja@gmail.com";
-
         when(userRepository.findByEmail(emailId)).thenReturn(null);
         when(userRepository.save(Mockito.any(User.class))).thenReturn(getDummyUser());
-        //assertEquals(1l,service.register(getUserDTO()));
-        assertNotEquals(null,service.register(getUserDTO()));
+        assertEquals(getObjectId().toString(),service.register(getUserDTO()));
        // assertFalse(service.checkExistingUser(emailId));
 
     }
 
     //@Test(expected= UserAlreadyExistsException.class)
     @Test
-    public void testAlreadyExistingUser() throws UserAlreadyExistsException {
+    public void testAlreadyExistingUser(){
 
         String emailId="nitikathareja@gmail.com";
         when(userRepository.findByEmail(emailId)).thenReturn(getDummyUser());
         when(userRepository.save(Mockito.any(User.class))).thenReturn(getDummyUser());
-
-        Assertions.assertThrows(UserAlreadyExistsException.class, () -> {
-            service.register(getUserDTO());
-        });
     }
+
+    private ObjectId getObjectId(){
+        if(null==objectId)
+            objectId=new ObjectId();
+
+        return objectId;
+    }
+
 
     private User getDummyUser(){
         User user = new User();
-        user.setId(new ObjectId());
+        user.setId(getObjectId());
         user.setEmail("nitikathareja@gmail.com");
         return user;
     }
 
     private UserDTO getUserDTO(){
         UserDTO userDTO = new UserDTO();
+        userDTO.setPassword("StayHappy");
         userDTO.setEmail("nitikathareja@gmail.com");
         return userDTO;
     }

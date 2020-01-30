@@ -1,41 +1,49 @@
-<form class="example-form" #f="ngForm" (ngSubmit)="onSignup(f)">
+<mat-card class="box">
+<form [formGroup]="userForm" class="example-form"  (ngSubmit)="onSignup()">
     <mat-card-content>
-      <p>
+
       <mat-form-field class="dimo-field">
-        <input matInput placeholder="Name" name="name"  required=true ngModel>
+        <input type="text" matInput placeholder="First Name" name="firstName" formControlName="firstName" required = true ngModel >
+        <mat-error>
+          Please enter your first name.
+        </mat-error>
       </mat-form-field>
-      </p>
 
-      <p>
-        <mat-form-field class="dimo-field">
-          <input type="email" matInput placeholder="Email" name="email" required=true [formControl]="emailFormControl" ngModel>
-          <mat-error *ngIf="emailFormControl.hasError('email')">
-              Please enter a valid email address
-            </mat-error>
-        </mat-form-field>
-      </p>
+      <mat-form-field class="dimo-field">
+        <input type="text" matInput placeholder="Last Name" name="lastName" formControlName="lastName" required = true ngModel >
+        <mat-error>
+          Please enter your second name.
+        </mat-error>
+      </mat-form-field>
 
-      <p>
+      <mat-form-field class="dimo-field">
+        <input type="email" matInput placeholder="Email" name="email" formControlName="email" required = true ngModel >
+        <mat-error>
+          Please enter  valid email address.
+        </mat-error>
+      </mat-form-field>
+
         <mat-form-field class="dimo-field">
-          <input type="password" matInput placeholder="Password" name="password" [formControl]="passwordFormControl" required = true ngModel [type]="hide ? 'password' : 'text'" >
+          <input type="password" matInput placeholder="Password" name="password" formControlName="password" required = true ngModel [type]="hide ? 'password' : 'text'">
+          <mat-error>
+            Please enter a password with minimum 8 characters.
+          </mat-error>
           <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button>
-            <mat-error *ngIf="passwordFormControl.hasError('password')">
-              Please enter a password with minimum 8 characters.
-            </mat-error>
+          </button>
         </mat-form-field>
-      </p>
 
-      <p>
-        <mat-form-field class="dimo-field">
-          <input type="password" matInput placeholder="Confirm Password" name="confirmPassword" [formControl]="passwordFormControl" required = true>
-          <mat-error *ngIf="passwordFormControl.hasError('confirmPassword')">
-            Please enter a valid email address
-          </mat-error>
-        </mat-form-field>
-      </p>
+      <mat-form-field class="dimo-field">
+        <input type="password" matInput placeholder="Confirm Password" name="confirmPassword" formControlName="confirmPassword" required = true ngModel [type]="hide ? 'password' : 'text'">
+        <mat-error *ngIf="userForm.hasError('notSame')">
+          Passwords do not match.
+        </mat-error>
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
 
     </mat-card-content>
-  <button mat-raised-button color="primary">Register</button>
+  <button type="submit" mat-raised-button color="primary" (click)="openDialog()">Register</button>
   </form>
+</mat-card>
