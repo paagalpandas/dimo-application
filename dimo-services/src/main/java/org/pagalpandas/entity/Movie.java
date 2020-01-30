@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import javax.persistence.Id;
 import java.util.List;
 
-@Document(collection = "image_test")
+@Document(collection = "movies")
 public class Movie {
 
     public Movie(){}

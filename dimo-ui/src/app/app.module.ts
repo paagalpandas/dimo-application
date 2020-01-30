@@ -18,6 +18,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {MatDialogModule} from '@angular/material/dialog';
 import { SearchboxComponent } from '../app/containers/components/searchbox.component';
 import { SearchResultsComponent } from "./containers/components/searchresults.component";
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +42,8 @@ import { SearchResultsComponent } from "./containers/components/searchresults.co
     FormsModule,
     AppRoutingModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
