@@ -1,7 +1,9 @@
 .dashboard-caontainer {
+  padding-top: 30px;
   background: url("../../../../assets/movie-details-bg.webp");
   background-size: contain;
   color: white;
+  min-height: 90vh;
 
   .category-container {
     height: 50vh;

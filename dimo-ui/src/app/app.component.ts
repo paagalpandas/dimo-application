@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { SearchboxComponent } from '../app/containers/components/searchbox.component';
 import { ProfileService } from './services/ProfileService';
+// import { Mat } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,7 @@ import { ProfileService } from './services/ProfileService';
 export class AppComponent {
   title = 'Dimo';
 
-  color = 'primary';
+  color = 'secondary';
   mode = 'indeterminate';
 
   public showHeader = false;
