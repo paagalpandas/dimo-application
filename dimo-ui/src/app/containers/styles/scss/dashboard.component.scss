@@ -1,5 +1,9 @@
 .dashboard-caontainer {
-  background: #efefef;
+  padding-top: 30px;
+  background: url("../../../../assets/movie-details-bg.webp");
+  background-size: contain;
+  color: white;
+  min-height: 90vh;
 
   .category-container {
     height: 50vh;
@@ -31,6 +35,7 @@
       margin-top: 15px;
       margin-left: 15px;
       margin-right: 15px;
+      cursor: pointer;
 
       .mat-card-title {
         margin-top: 0;

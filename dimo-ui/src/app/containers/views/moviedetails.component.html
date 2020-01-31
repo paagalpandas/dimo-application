@@ -1,15 +1,40 @@
-<div class="container" *ngIf="moviedetails">
-  <h2 class="title">{{moviedetails.title}}</h2>
-  <h3>{{moviedetails.description}}</h3>
-  <h3>{{moviedetails.tagLine}}</h3>
-  <div>
-          <mat-card class="custom-card">
-            <img mat-card-image [attr.src]="moviedetails.thumbNail" class="image">
-          </mat-card>
+<div class="movie-details-container" *ngIf="moviedetails">
+  <h1 class="title margin-bottom">{{moviedetails.title}}</h1>
+  <div class="preview margin-bottom">
+    <div class="image-container">
+      <img [attr.src]="moviedetails.thumbNail">
+    </div>
+    <div class="release-container">
+      <div>
+        <span class="heading">Release</span>
+        :
+        <span>{{moviedetails.releaseDate}}</span>
+      </div>
+
+      <div>
+        <span class="heading">Language</span>
+        :
+        <span>{{moviedetails.language}}</span>
+      </div>
+      <div>
+        <span class="heading">Tagline</span>
+        :
+        <span>{{moviedetails.tagLine}}</span>
+      </div>
+      <div>
+        <span class="heading">Genre</span>
+        :
+        <span *ngFor="let genre of moviedetails.genre">{{genre}}, </span>
+      </div>
+      <div>
+        {{moviedetails.overview}}
+      </div>
+    </div>
+  </div>
+  <div class="similar-movies margin-bottom">
+    <h3>SIMILAR MOVIES</h3>
+    <div class="cards-container">
+      <img *ngFor="let card of moviedetails.similarMovies" (click)="viewDetails(card)" [attr.src]="card.poster" class="similar-movie">
+    </div>
   </div>
 </div>
-
-<!--<ng-template #errormsg>-->
-<!--  <h2>No Details found</h2>-->
-<!--</ng-template>-->
-

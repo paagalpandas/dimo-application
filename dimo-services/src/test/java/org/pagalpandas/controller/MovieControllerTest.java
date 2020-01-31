@@ -26,5 +26,13 @@ public class MovieControllerTest {
         assertEquals("English",movieDTO.getLanguage());
     }
 
+    @Test
+    public void testGetPopularMovieById() throws Exception {
+        ResponseEntity<ResponseDTO> responseEntity= movieController.getMovies("5e2fe41d2b023a0de86b0c0d");
+        MovieDetailsDTO movieDTO= (MovieDetailsDTO)responseEntity.getBody().getData();
+        assertEquals("Minions",movieDTO.getTitle());
+        assertEquals(5,movieDTO.getSimilarMovies().size());
+    }
+
 }
 
