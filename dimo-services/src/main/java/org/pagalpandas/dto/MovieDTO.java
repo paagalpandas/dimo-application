@@ -1,7 +1,10 @@
 package org.pagalpandas.dto;
 
+import org.pagalpandas.entity.ProductionCompany;
+
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.List;
 
 public class MovieDTO implements Serializable {
 
@@ -15,6 +18,27 @@ public class MovieDTO implements Serializable {
    private String description;//temporary placeholder because of UI
    private String name;//temporary placeholder because of UI
    private String thumbNail;//temporary placeholder because of UI
+    private  String originalLanguage;
+    private List<ProductionCompany> productionCompanies;
+
+
+
+    public List<ProductionCompany> getProductionCompanies() {
+        return productionCompanies;
+    }
+
+    public void setProductionCompanies(List<ProductionCompany> productionCompanies) {
+        this.productionCompanies = productionCompanies;
+    }
+    public String getOriginalLanguage() {
+        return originalLanguage;
+    }
+
+    public void setOriginalLanguage(String originalLanguage) {
+        this.originalLanguage = originalLanguage;
+    }
+
+
 
     public void setPopularity(float popularity) {
         this.popularity = popularity;

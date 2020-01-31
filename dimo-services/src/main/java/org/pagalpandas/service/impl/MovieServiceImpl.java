@@ -55,4 +55,35 @@ public class MovieServiceImpl implements MovieService {
 		}
 		return movieDTOList;
 	}
+
+	public List<MovieDTO> getTopNMoviesByOriginalLanguage(String originalLanguage, int topN){
+		if(topN<0) topN = 5;
+
+		List<MovieDTO> movieDTOList = new ArrayList<MovieDTO>();
+
+		Page<Movie> moviePage = movieRepository.findByOriginalLanguage(originalLanguage, PageRequest.of(0, topN, Sort.by(Sort.Direction.DESC,"popularity")) );
+
+		for (Movie movie:moviePage) {
+
+			movieDTOList.add(movieEntityDTOConverter.convertEntityToDTO(movie));
+		}
+		return movieDTOList;
+
+	}
+
+	public List<MovieDTO> getTopNMoviesByProductionCompany(String productionCompany, int topN){
+		if(topN<0) topN = 5;
+
+		List<MovieDTO> movieDTOList = new ArrayList<MovieDTO>();
+
+		Page<Movie> moviePage = movieRepository.findByProductionCompaniesNameIgnoreCaseContaining (productionCompany, PageRequest.of(0, topN, Sort.by(Sort.Direction.DESC,"popularity")) );
+
+		for (Movie movie:moviePage) {
+
+			movieDTOList.add(movieEntityDTOConverter.convertEntityToDTO(movie));
+		}
+		return movieDTOList;
+	}
+
+
 }

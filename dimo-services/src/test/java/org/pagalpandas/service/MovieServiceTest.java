@@ -24,7 +24,7 @@ public class MovieServiceTest {
     }
 
     @Test
-    public void testfindTopNTrendingCount(){
+    public void testfindTopNTrendingOrder(){
 
         List<MovieDTO> movieDTOList = movieService.getTopNTrendingMovies(10);
         assertEquals(10, movieDTOList.size());
@@ -38,7 +38,7 @@ public class MovieServiceTest {
     }
 
     @Test
-    public void testfindTopNTrendingOrder(){
+    public void testfindTopNTrendingCount(){
 
         List<MovieDTO> movieDTOList = movieService.getTopNTrendingMovies(10);
         for (MovieDTO movieDTO: movieDTOList) {
@@ -54,5 +54,49 @@ public class MovieServiceTest {
             System.out.println(movieDTO.getTitle() + ", pop: " + movieDTO.getPopularity());
         }
         assertEquals(5, movieDTOList.size());
+    }
+
+    @Test
+    public void testfindTopNMoviesByLanguageOrderAndCount(){
+
+        List<MovieDTO> movieDTOList = movieService.getTopNMoviesByOriginalLanguage("en", 10);
+        assertEquals(10, movieDTOList.size());
+        assertEquals("Minions", movieDTOList.get(0).getTitle());
+        float prevPopulariy =10000;
+        for (MovieDTO movieDTO: movieDTOList) {
+            System.out.println(movieDTO.getTitle() + ", pop: " + movieDTO.getPopularity());
+            assertTrue(movieDTO.getPopularity() < prevPopulariy);
+            prevPopulariy = movieDTO.getPopularity();
+        }
+    }
+
+    @Test
+    public void testfindTopNMoviesByNotFoundLanguage(){
+
+        List<MovieDTO> movieDTOList = movieService.getTopNMoviesByOriginalLanguage("ab", 10);
+        assertEquals(0, movieDTOList.size());
+
+    }
+
+    @Test
+    public void testfindTopNMoviesByProductionCompanyOrderAndCount(){
+
+        List<MovieDTO> movieDTOList = movieService.getTopNMoviesByProductionCompany ("Walt Disney", 5);
+        assertEquals(5, movieDTOList.size());
+        //assertEquals("Minions", movieDTOList.get(0).getTitle());
+        float prevPopulariy =10000;
+        for (MovieDTO movieDTO: movieDTOList) {
+            System.out.println(movieDTO.getTitle() + ", pop: " + movieDTO.getPopularity());
+            assertTrue(movieDTO.getPopularity() < prevPopulariy);
+            prevPopulariy = movieDTO.getPopularity();
+        }
+    }
+
+    @Test
+    public void testfindTopNMoviesByNotFoundProductionCompany(){
+
+        List<MovieDTO> movieDTOList = movieService.getTopNMoviesByProductionCompany("DinosaurCompany", 10);
+        assertEquals(0, movieDTOList.size());
+
     }
 }

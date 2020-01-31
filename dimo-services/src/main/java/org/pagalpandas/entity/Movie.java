@@ -2,9 +2,9 @@ package org.pagalpandas.entity;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 import javax.persistence.Id;
-import java.util.Comparator;
 import java.util.List;
 
 @Document(collection = "movies")
@@ -21,7 +21,10 @@ public class Movie {
     private String Poster;
     private List<Genre> genres;
     private String release_date;
-    private String original_language;
+    @Field("original_language")
+    private String originalLanguage;
+    @Field("production_companies")
+    private List<ProductionCompany> productionCompanies;
     private String overview;
 
     private float popularity;
@@ -36,6 +39,14 @@ public class Movie {
         return movieId;
     }
 
+
+    public List<ProductionCompany> getProductionCompanies() {
+        return productionCompanies;
+    }
+
+    public void setProductionCompanies(List<ProductionCompany> productionCompanies) {
+        this.productionCompanies = productionCompanies;
+    }
     public List<Keyword> getKeywords() {
         return keywords;
     }
@@ -56,16 +67,16 @@ public class Movie {
         return release_date;
     }
 
-    public String getOriginal_language() {
-        return original_language;
+    public String getOriginalLanguage() {
+        return originalLanguage;
     }
 
     public String getOverview() {
         return overview;
     }
 
-    public void setOriginal_language(String original_language) {
-        this.original_language = original_language;
+    public void setOriginalLanguage(String originalLanguage) {
+        this.originalLanguage = originalLanguage;
     }
 
     public void setRelease_date(String release_date) {
