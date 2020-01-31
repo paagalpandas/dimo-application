@@ -5,6 +5,7 @@ import org.pagalpandas.dto.MovieDTO;
 import org.pagalpandas.dto.MovieDetailsDTO;
 import org.pagalpandas.entity.Genre;
 import org.pagalpandas.entity.Movie;
+import org.pagalpandas.repo.LanguageRepository;
 import org.pagalpandas.repo.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -21,6 +22,10 @@ public class MovieEntityDTOConverter {
     ModelMapper modelMapper;
     @Autowired
     private MovieRepository movieRepository;
+    @Autowired
+    private LanguageRepository languageRepository;
+    @Autowired
+    DateFormatter dateFormatter;
 
     public MovieDTO convertEntityToDTO(Movie movie)
     {
@@ -31,13 +36,12 @@ public class MovieEntityDTOConverter {
         return movieDTO;
     }
 
-    public MovieDetailsDTO convertEntityToMovieDetailDTO(Movie movie)
-    {
+    public MovieDetailsDTO convertEntityToMovieDetailDTO(Movie movie) {
         MovieDetailsDTO movieDetailsDTO = modelMapper.map(movie, MovieDetailsDTO.class);
         movieDetailsDTO.setThumbNail(movie.getPoster());
-        movieDetailsDTO.setLanguage(movie.getOriginal_language());
+        movieDetailsDTO.setLanguage(languageRepository.getLanguageName(movie.getOriginal_language()));
         List<Movie> movies = (movieRepository.findByGenresName(movie.getGenres().get(0).getName() , PageRequest.of(0,5, Sort.by(Sort.Direction.DESC,"popularity"))));
-        movieDetailsDTO.setReleaseDate(movie.getRelease_date());
+        movieDetailsDTO.setReleaseDate(dateFormatter.format(movie.getRelease_date()));
 
         List<String> genres = new ArrayList<>();
         for(Genre genre : movie.getGenres())
