@@ -39,7 +39,7 @@ public class MovieEntityDTOConverter {
     public MovieDetailsDTO convertEntityToMovieDetailDTO(Movie movie) {
         MovieDetailsDTO movieDetailsDTO = modelMapper.map(movie, MovieDetailsDTO.class);
         movieDetailsDTO.setThumbNail(movie.getPoster());
-        movieDetailsDTO.setLanguage(languageRepository.getLanguageName(movie.getOriginal_language()));
+        movieDetailsDTO.setLanguage(languageRepository.getLanguageName(movie.getOriginalLanguage()));
         movieDetailsDTO.setReleaseDate(dateFormatter.format(movie.getRelease_date()));
 
         List<Movie> movies = (movieRepository.findByGenresName(movie.getGenres().get(0).getName() , PageRequest.of(0,6, Sort.by(Sort.Direction.DESC,"popularity"))));
