@@ -38,11 +38,17 @@ public class DashboardController {
         List<CategoryDTO> categoryDTOS = new ArrayList<>();
         String[] cats = {"Trending", "French", "Walt Disney"};
         List<MovieDTO> movieDTOS = movieService.getTopNTrendingMovies(5);
+        List<MovieDTO> movieDTOSByLanguage = movieService.getTopNMoviesByOriginalLanguage("fr", 5);
+        List<MovieDTO> movieDTOSByProdCompany = movieService.getTopNMoviesByProductionCompany ("Walt Disney", 5);
 
         for (String c : cats) {
             CategoryDTO categoryDTO = new CategoryDTO();
             categoryDTO.category = c;
-            categoryDTO.movies = movieDTOS;
+            switch(c){
+                case "Trending": categoryDTO.movies = movieDTOS;break;
+                case "French"  : categoryDTO.movies = movieDTOSByLanguage;break;
+                case "Walt Disney" : categoryDTO.movies = movieDTOSByProdCompany;break;
+            }
             categoryDTOS.add(categoryDTO);
         }
         return categoryDTOS;
