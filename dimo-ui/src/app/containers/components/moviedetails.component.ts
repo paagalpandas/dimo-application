@@ -1,20 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Component } from '@angular/core';
+import { HttpClient } from "@angular/common/http";
 import { ProfileService } from "../../services/ProfileService";
-import {IMovieDetailsDTO} from "../dto/MovieDetailsDTO";
-import {ResponseDTO} from "../dto/ResponseDTO";
-import {ActivatedRoute, Router} from "@angular/router";
+import { IMovieDetailsDTO } from "../dto/MovieDetailsDTO";
+import { ActivatedRoute, Router } from "@angular/router";
+import { ResponseDTO } from '../dto/ResponseDTO';
+import { IMovieData } from '../helpers/dashboard.interfaces';
 
 @Component({
   selector: 'dimo-moviedetails',
   templateUrl: '../views/moviedetails.component.html',
   styleUrls: ['../styles/scss/moviedetails.component.scss']
 })
-export class MovieDetailsComponent implements OnInit {
+export class MovieDetailsComponent {
 
   public moviedetails: IMovieDetailsDTO;
 
-  constructor(private http: HttpClient, private profileService: ProfileService,private route: ActivatedRoute,private router: Router) {
+  constructor(private http: HttpClient, private profileService: ProfileService, private route: ActivatedRoute, private router: Router) {
     this.route.params.subscribe(params => {
       if (params['id']) {
         this.doSearch(params['id'])
@@ -22,17 +23,20 @@ export class MovieDetailsComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
 
+  public viewDetails(movie: IMovieData) {
+    const id = movie.id;
+    this.doSearch(id);
   }
 
   private doSearch(id: string) {
-    let url="/api/movie/"+id;
+    const url = `/api/movie/${id}`;
+
+
     this.http.get(url).subscribe(data => {
-      let response=data as ResponseDTO;
-      let movieDetails= (response && response.data) ? response.data as unknown as IMovieDetailsDTO : null;
-      console.log(movieDetails);
-      this.moviedetails=movieDetails;
+      const response = data as ResponseDTO;
+      const movieDetails = (response && response.data) ? response.data as unknown as IMovieDetailsDTO : null;
+      this.moviedetails = movieDetails;
     });
   }
 }

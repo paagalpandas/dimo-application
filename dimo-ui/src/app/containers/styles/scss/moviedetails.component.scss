@@ -1,14 +1,61 @@
-.image{
-  height: 500px;
-  width: 500px;
-}
+.movie-details-container {
+  padding: 20px;
+  background: url("../../../../assets/movie-details-bg.webp");
+  background-size: contain;
+  color: white;
+  .margin-bottom {
+    margin-bottom: 30px;
+  }
 
+  .title {
+    color: white;
+    font-size: 3em;
+  }
 
-.container{
-  margin: 40px;
-}
-.title{
-  margin-bottom: 12px;
-  font-size: 35px;
-  line-height: 36px;
+  .preview {
+    display: flex;
+
+    .image-container {
+      img {
+        border: 1px solid lightgray;
+        box-shadow: 103px 43px 175px 50px black;
+        border-radius: 5px;
+        height: 500px;
+        width: 500px;
+      }
+    }
+
+    .release-container {
+      display: flex;
+      flex-flow: column;
+      padding-left: 200px;
+      font-size: 18px;
+      letter-spacing: 1px;
+      justify-content: space-around;
+
+      .heading {
+        font-size: 22px;
+        font-weight: 600;
+        color: white;
+      }
+    }
+  }
+
+  .overview {
+    padding: 30px 15px;
+    border: 1px solid lightgray;
+    box-shadow: 2px 2px 20px -9px black;
+  }
+
+  .cards-container {
+    display: flex;
+    img {
+      margin: 9px;
+      box-shadow: 2px 2px 20px -9px black;
+      height: 350px;
+      border-radius: 7px;
+      width: 310px;
+      cursor: pointer;
+    }
+  }
 }
