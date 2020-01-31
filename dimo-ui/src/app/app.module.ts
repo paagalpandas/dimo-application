@@ -14,13 +14,16 @@ import { SignUpComponent } from "./containers/components/signup.component";
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog';
 import { SearchboxComponent } from '../app/containers/components/searchbox.component';
 import { SearchResultsComponent } from "./containers/components/searchresults.component";
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HeaderComponent } from "./containers/components/header.component";
+import {MovieDetailsComponent} from "./containers/components/moviedetails.component";
 
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,8 @@ import { HeaderComponent } from "./containers/components/header.component";
     SearchResultsComponent,
     EntryPointComponent,
     SignUpComponent,
-    HeaderComponent
+    HeaderComponent,
+    MovieDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -47,9 +51,14 @@ import { HeaderComponent } from "./containers/components/header.component";
     AppRoutingModule,
     MatButtonModule,
     MatDialogModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatProgressSpinnerModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule {

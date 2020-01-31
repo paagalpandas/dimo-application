@@ -3,6 +3,7 @@ package org.pagalpandas.controller;
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.Test;
 import org.pagalpandas.dto.MovieDTO;
+import org.pagalpandas.dto.MovieDetailsDTO;
 import org.pagalpandas.dto.ResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,10 +19,9 @@ public class MovieControllerTest {
     @Test
     public void testGetMovieById() throws Exception {
         ResponseEntity<ResponseDTO> responseEntity= movieController.getMovies("5e2fe41d2b023a0de86b0a21");
-        MovieDTO movieDTO= (MovieDTO)responseEntity.getBody().getData();
-        assertEquals("The Good Dinosaur",movieDTO.getName());
-        assertEquals("https://m.media-amazon.com/images/M/MV5BMTc5MTg2NjQ4MV5BMl5BanBnXkFtZTgwNzcxOTY5NjE@._V1_SX300.jpg",movieDTO.getThumbNail());
-        assertEquals("Little Arms With Big Attitude",movieDTO.getDescription());
+        MovieDetailsDTO movieDTO= (MovieDetailsDTO)responseEntity.getBody().getData();
+        assertEquals("The Good Dinosaur",movieDTO.getTitle());
+        assertEquals("Little Arms With Big Attitude",movieDTO.getTagLine());
     }
 
 }

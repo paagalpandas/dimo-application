@@ -1,6 +1,8 @@
 package org.pagalpandas.repo;
 
+import org.bson.types.ObjectId;
 import org.junit.jupiter.api.Test;
+import org.pagalpandas.dto.MovieDetailsDTO;
 import org.pagalpandas.entity.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

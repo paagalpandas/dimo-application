@@ -1,0 +1,15 @@
+<div class="container" *ngIf="moviedetails">
+  <h2 class="title">{{moviedetails.title}}</h2>
+  <h3>{{moviedetails.description}}</h3>
+  <h3>{{moviedetails.tagLine}}</h3>
+  <div>
+          <mat-card class="custom-card">
+            <img mat-card-image [attr.src]="moviedetails.thumbNail" class="image">
+          </mat-card>
+  </div>
+</div>
+
+<!--<ng-template #errormsg>-->
+<!--  <h2>No Details found</h2>-->
+<!--</ng-template>-->
+

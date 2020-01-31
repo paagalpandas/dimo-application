@@ -31,10 +31,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // Entry points
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/*.ico").permitAll()
-                .antMatchers("/*.html").permitAll()
-                .antMatchers("/*.js").permitAll()
-                .antMatchers("/*.css").permitAll()
+                .antMatchers("/*.*").permitAll()
+                .antMatchers("/assets/*.*").permitAll()
                 .antMatchers("/api/users/login").permitAll()//
                 .antMatchers("/api/users/register").permitAll()//
                 .antMatchers("/api/ping").permitAll()//

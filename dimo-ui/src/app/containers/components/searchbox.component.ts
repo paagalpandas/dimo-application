@@ -16,17 +16,14 @@ export class SearchboxComponent {
   public searchStr = '';
 
   constructor(private http: HttpClient,
-    private router: Router, private profileService: ProfileService, private searchResultStateService: SearchResultStateService) {
+    private router: Router, private searchResultStateService: SearchResultStateService) {
   }
 
   onSearch() {
     const keyword = this.searchStr;
-    let header = new HttpHeaders();
+    const params = new HttpParams().set('searchString', keyword);
 
-    header = header.append('Authorization', 'Bearer ' + this.profileService.getToken());
-    let params = new HttpParams().set('searchString', keyword);
-
-    this.http.get("/api/search", { headers: header, params: params })
+    this.http.get("/api/search", { params })
       .subscribe(data => {
         const movies = data as Array<IMovieData>;
         this.router.navigate(["searchresults"]);
