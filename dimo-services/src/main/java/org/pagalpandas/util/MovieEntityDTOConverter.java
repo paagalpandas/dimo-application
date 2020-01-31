@@ -12,6 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,8 +41,13 @@ public class MovieEntityDTOConverter {
         MovieDetailsDTO movieDetailsDTO = modelMapper.map(movie, MovieDetailsDTO.class);
         movieDetailsDTO.setThumbNail(movie.getPoster());
         movieDetailsDTO.setLanguage(languageRepository.getLanguageName(movie.getOriginal_language()));
-        List<Movie> movies = (movieRepository.findByGenresName(movie.getGenres().get(0).getName() , PageRequest.of(0,5, Sort.by(Sort.Direction.DESC,"popularity"))));
         movieDetailsDTO.setReleaseDate(dateFormatter.format(movie.getRelease_date()));
+
+        List<Movie> movies = (movieRepository.findByGenresName(movie.getGenres().get(0).getName() , PageRequest.of(0,6, Sort.by(Sort.Direction.DESC,"popularity"))));
+
+        if(!movies.remove(movie))
+            if(movies.size()==6)
+                movies.remove(movies.size()-1);
 
         List<String> genres = new ArrayList<>();
         for(Genre genre : movie.getGenres())
