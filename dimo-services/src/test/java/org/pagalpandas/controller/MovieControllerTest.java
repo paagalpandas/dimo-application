@@ -22,6 +22,8 @@ public class MovieControllerTest {
         MovieDetailsDTO movieDTO= (MovieDetailsDTO)responseEntity.getBody().getData();
         assertEquals("The Good Dinosaur",movieDTO.getTitle());
         assertEquals("Little Arms With Big Attitude",movieDTO.getTagLine());
+        assertEquals("Nov, 2015",movieDTO.getReleaseDate());
+        assertEquals("English",movieDTO.getLanguage());
     }
 
 }
