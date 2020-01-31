@@ -16,5 +16,6 @@ public interface MovieService {
 	public List<MovieDTO> getTopNTrendingMovies(int topN);
 	public List<MovieDTO> getTopNMoviesByOriginalLanguage(String originalLanguage, int topN);
 	public List<MovieDTO> getTopNMoviesByProductionCompany(String productionCompany, int topN);
+	public List<MovieDTO> getTopNMoviesByGenre(String genreName, int topN);
 
 }

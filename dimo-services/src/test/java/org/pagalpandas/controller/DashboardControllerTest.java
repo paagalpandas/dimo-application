@@ -3,6 +3,7 @@ package org.pagalpandas.controller;
 import org.junit.jupiter.api.Test;
 import org.pagalpandas.dto.CategoryDTO;
 import org.pagalpandas.dto.MovieDTO;
+import org.pagalpandas.entity.Genre;
 import org.pagalpandas.entity.ProductionCompany;
 import org.pagalpandas.exceptions.UnauthorizedException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,13 +26,16 @@ public class DashboardControllerTest {
         List<CategoryDTO> dashboardData = dashboardController.get(null);
 
         boolean isTrendingPresent = false;
+        boolean isGenrePresent = false;
         boolean isLanguagePresent = false;
         boolean isProdCompanyPresent = false;
 
         String productionCompany = "Walt Disney";
+        String genreName = "Romance";
 
         for (CategoryDTO categoryDTO: dashboardData) {
             if(categoryDTO.category.equalsIgnoreCase("trending") && categoryDTO.movies !=null && categoryDTO.movies.size()>0) isTrendingPresent = true;
+            if(categoryDTO.category.equalsIgnoreCase("Romance") && categoryDTO.movies !=null && categoryDTO.movies.size()>0) isGenrePresent = true;
             if(categoryDTO.category.equalsIgnoreCase("French") && categoryDTO.movies !=null && categoryDTO.movies.size()>0) {
                 isLanguagePresent = true;
                 for (MovieDTO movieDTO:categoryDTO.movies) {
@@ -49,6 +53,8 @@ public class DashboardControllerTest {
                     assertEquals(true, isProducedBy);
                 }
             }
+
+
         }
         assertTrue(isTrendingPresent && isLanguagePresent && isProdCompanyPresent);
     }

@@ -20,6 +20,8 @@ public interface MovieRepository extends MongoRepository<Movie, Long> {
     Page<Movie> findByOriginalLanguage(String originalLanguage, Pageable pageable);
     Page<Movie> findByProductionCompaniesNameIgnoreCaseContaining(String productionCompany, Pageable pageable);
 
+    Page<Movie> findByGenresNameIgnoreCaseContaining(String genreName, Pageable pageable);
+
     @Override
     List<Movie> findAll();
 

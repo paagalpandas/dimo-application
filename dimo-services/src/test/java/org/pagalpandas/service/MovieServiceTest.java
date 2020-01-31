@@ -99,4 +99,26 @@ public class MovieServiceTest {
         assertEquals(0, movieDTOList.size());
 
     }
+
+    @Test
+    public void testfindTopNMoviesByGenreOrderAndCount(){
+
+        List<MovieDTO> movieDTOList = movieService.getTopNMoviesByGenre ("Action", 5);
+        assertEquals(5, movieDTOList.size());
+        //assertEquals("Minions", movieDTOList.get(0).getTitle());
+        float prevPopulariy =10000;
+        for (MovieDTO movieDTO: movieDTOList) {
+            System.out.println(movieDTO.getTitle() + ", pop: " + movieDTO.getPopularity());
+            assertTrue(movieDTO.getPopularity() < prevPopulariy);
+            prevPopulariy = movieDTO.getPopularity();
+        }
+    }
+
+    @Test
+    public void testfindTopNMoviesByNotFoundGenre(){
+
+        List<MovieDTO> movieDTOList = movieService.getTopNMoviesByGenre("NotFound Genre", 5);
+        assertEquals(0, movieDTOList.size());
+
+    }
 }

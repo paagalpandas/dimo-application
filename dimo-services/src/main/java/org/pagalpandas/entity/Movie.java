@@ -27,6 +27,7 @@ public class Movie {
     private List<ProductionCompany> productionCompanies;
     private String overview;
 
+
     private float popularity;
 
     public Movie(int movieId, String title, String tagline){

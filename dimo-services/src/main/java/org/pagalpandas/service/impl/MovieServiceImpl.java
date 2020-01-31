@@ -85,5 +85,19 @@ public class MovieServiceImpl implements MovieService {
 		return movieDTOList;
 	}
 
+	public List<MovieDTO> getTopNMoviesByGenre(String genreName, int topN){
+		if(topN<0) topN = 5;
+
+		List<MovieDTO> movieDTOList = new ArrayList<MovieDTO>();
+
+		Page<Movie> moviePage = movieRepository.findByGenresNameIgnoreCaseContaining (genreName, PageRequest.of(0, topN, Sort.by(Sort.Direction.DESC,"popularity")) );
+
+		for (Movie movie:moviePage) {
+
+			movieDTOList.add(movieEntityDTOConverter.convertEntityToDTO(movie));
+		}
+		return movieDTOList;
+	}
+
 
 }

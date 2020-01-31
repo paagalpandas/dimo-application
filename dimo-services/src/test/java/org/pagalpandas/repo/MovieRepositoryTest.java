@@ -3,6 +3,7 @@ package org.pagalpandas.repo;
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.Test;
 import org.pagalpandas.dto.MovieDetailsDTO;
+import org.pagalpandas.entity.Genre;
 import org.pagalpandas.entity.Movie;
 import org.pagalpandas.entity.ProductionCompany;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -124,6 +125,44 @@ public class MovieRepositoryTest {
             assertEquals(true, isProducedBy);
         }
 
+    }
+
+    @Test
+    public void testfindByGenrePaged(){
+
+        String genreName = "Action";
+        Page<Movie> resultList = movieRepository.findByGenresNameIgnoreCaseContaining(genreName,
+                PageRequest.of(0, 5, Sort.by(Sort.Direction.DESC,"popularity")) );
+        assert(resultList.getContent().size()==5);
+        for (Movie movie: resultList) {
+            System.out.println(movie.getTitle() + " in " + movie.getGenres());
+            boolean isInGenre = false;
+            List<Genre> genreList = movie.getGenres();
+            for (Genre genre: genreList) {
+                if(genre.getName().contains(genreName.subSequence(0,genreName.length())) ){isInGenre = true;}
+                else{
+                    System.out.println("Mismatch Genre - " + genre.getName());
+                }
+            }
+            assertEquals(true, isInGenre);
+        }
+
+        genreName = "Adventure";
+        resultList = movieRepository.findByGenresNameIgnoreCaseContaining(genreName,
+                PageRequest.of(0, 5, Sort.by(Sort.Direction.DESC,"popularity")) );
+        assert(resultList.getContent().size()==5);
+        for (Movie movie: resultList) {
+            System.out.println(movie.getTitle() + " in " + movie.getGenres());
+            boolean isInGenre = false;
+            List<Genre> genreList = movie.getGenres();
+            for (Genre genre: genreList) {
+                if(genre.getName().contains(genreName.subSequence(0,genreName.length())) ){isInGenre = true;}
+                else{
+                    System.out.println("Mismatch Genre - " + genre.getName());
+                }
+            }
+            assertEquals(true, isInGenre);
+        }
     }
 
 }
